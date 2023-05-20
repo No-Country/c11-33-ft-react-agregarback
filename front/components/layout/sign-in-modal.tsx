@@ -9,6 +9,9 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
+import FormSign from "./authForm/FormSign";
+import Balancer from "react-wrap-balancer";
+
 
 const SignInModal = ({
   showSignInModal,
@@ -27,6 +30,10 @@ const SignInModal = ({
           <h3 className=" col-span-2 text-left font-display text-2xl font-bold">
             Sign In
           </h3>
+          <div className="col-span-2 space-y-3">
+            <span className="font-roboto text-black/50">Enter your credentials to access your account</span>
+          <FormSign />
+          </div>
             <button
               disabled={signInClicked}
               className={`${
