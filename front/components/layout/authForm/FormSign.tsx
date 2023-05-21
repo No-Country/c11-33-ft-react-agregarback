@@ -1,4 +1,5 @@
 import { roboto } from "@/app/fonts";
+import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 
 interface FormValues {
@@ -46,6 +47,11 @@ const RegisterForm = () => {
     if (errs) {
       setErrors(errs);
     }
+    else {
+      const {email,password} = formValues
+      signIn('email', { email, password })
+    }
+    
   };
 
   return (
@@ -74,7 +80,9 @@ const RegisterForm = () => {
         >
           Password
         </label>
-        <p className='font-roboto font-semibold decoration-solid tracking-tight text-sm'>Forgot Password</p>
+        <p className="font-roboto text-sm font-semibold tracking-tight decoration-solid">
+          Forgot Password
+        </p>
       </div>
       <input
         id="password"
