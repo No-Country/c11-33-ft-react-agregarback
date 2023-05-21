@@ -18,7 +18,7 @@ export default async function Home() {
         >
           <Balancer>Fitnnes app</Balancer>
         </h1>
-        <p
+        <div
           className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 md:text-xl"
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
@@ -28,7 +28,7 @@ export default async function Home() {
             Nuestra plataforma de fitness te ayuda a alcanzar tus objetivos y mantener la motivación con seguimiento de objetivos, recursos educativos, desafíos de fitness y herramientas de organización. Descúbrela para comenzar tu viaje hacia una vida más saludable.
           </Balancer>
           </div>
-        </p>
+        </div>
       </div>
       <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
         {features.map(({ title, description, demo, large }) => (

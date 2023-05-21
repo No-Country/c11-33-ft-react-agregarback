@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LayoutDashboard, LogOut, UserCheckIcon,HistoryIcon } from "lucide-react";
 import Popover from "@/components/shared/popover";
 import Image from "next/image";
 import { Session } from "next-auth";
@@ -18,16 +18,35 @@ export default function UserDropdown({ session }: { session: Session }) {
       <Popover
         content={
           <div className="w-full rounded-md bg-white p-2 sm:w-56">
-            {/* <Link
-              className="flex items-center justify-start space-x-2 relative w-full rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
-              href="/dashboard"
-            >
-              <LayoutDashboard className="h-4 w-4" />
-              <p className="text-sm">Dashboard</p>
-            </Link> */}
             <button
-              className="relative flex w-full cursor-not-allowed items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
-              disabled
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+        
+            >
+              <UserCheckIcon className="h-4 w-4" />
+              <p className="text-sm">Profile</p>
+            </button>
+            <button
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              
+            >
+              <HistoryIcon className="h-4 w-4" />
+              <p className="text-sm">History</p>
+            </button>
+            <button
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              
+            >
+              <Image alt="workout img" src='/workout.svg' width={18} height={18} />
+              <p className="text-sm">Workout</p>
+            </button>
+            <button
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+            >
+              <Image alt="exercises img" src='/exercises.svg' width={18} height={18} />
+              <p className="text-sm">Exercises</p>
+            </button>
+            <button
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
             >
               <LayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>

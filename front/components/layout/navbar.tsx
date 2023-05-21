@@ -3,17 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
-import { useSignInModal } from "./sign-in-modal";
+import { useSignInModal } from "./sign-in-modal-sign";
+import { useLoginInModal } from "./sign-in-modal-login";
 import UserDropdown from "./user-dropdown";
 import { Session } from "next-auth";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
+  const { LoginInModal,setShowLoginInModal} = useLoginInModal();
   const scrolled = useScroll(50);
 
   return (
     <>
       <SignInModal />
+      <LoginInModal />
       <div
         className={`fixed top-0 w-full ${
           scrolled
@@ -29,12 +32,21 @@ export default function NavBar({ session }: { session: Session | null }) {
             {session ? (
               <UserDropdown session={session} />
             ) : (
+              <div className="grid grid-cols-2 gap-3">
+              <button
+                className="rounded-full border border-black bg-green-800 p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                onClick={() => setShowLoginInModal(true)}
+              >
+                Login
+              </button>
               <button
                 className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
                 onClick={() => setShowSignInModal(true)}
               >
                 Sign In
               </button>
+                </div>
+
             )}
           </div>
         </div>

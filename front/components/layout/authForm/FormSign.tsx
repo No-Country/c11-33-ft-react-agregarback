@@ -73,17 +73,12 @@ const RegisterForm = () => {
         className="mb-4 rounded-md border-2 border-gray-300 px-4 py-2"
       />
       {errors.password && <p className="text-red-500">{errors.password}</p>}
-      <div className="flex justify-between">
         <label
           className={`${roboto.variable} font-semibold`}
           htmlFor="password"
         >
           Password
         </label>
-        <p className="font-roboto text-sm font-semibold tracking-tight decoration-solid">
-          Forgot Password
-        </p>
-      </div>
       <input
         id="password"
         name="password"

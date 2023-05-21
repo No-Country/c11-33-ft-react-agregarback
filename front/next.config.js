@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["lh3.googleusercontent.com", "vercel.com"],
+    domains: ["lh3.googleusercontent.com", "vercel.com",'platform-lookaside.fbsbx.com'],
   },
   async redirects() {
     return [
