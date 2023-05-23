@@ -34,61 +34,6 @@ const SignInModal = ({
             <span className="font-roboto text-black/50">Enter your credentials to access your account</span>
           <FormSign />
           </div>
-            <button
-              disabled={signInClicked}
-              className={`${
-                signInClicked
-                  ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                  : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-              } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-              onClick={() => {
-                setSignInClicked(true);
-                signIn("google");
-              }}
-            >
-              {signInClicked ? (
-                <LoadingDots color="#808080" />
-              ) : (
-                <>
-                  <Image
-                    className="space-y-2"
-                    src={"/google.svg"}
-                    alt="Logo google"
-                    width={"15"}
-                    height={"15"}
-                  />
-                  <p>Google</p>
-                </>
-              )}
-            </button>
-            <button
-              disabled={signInClicked}
-              className={`${
-                signInClicked
-                  ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                  : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-              } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-              onClick={() => {
-                setSignInClicked(true);
-                signIn('facebook');
-              }}
-            >
-              {signInClicked ? (
-                <LoadingDots color="#808080" />
-              ) : (
-                <>
-                  <Image
-                    className="space-y-2"
-                    src={"/facebook.svg"}
-                    alt="Logo Facebook"
-                    width={"15"}
-                    height={"15"}
-                  />
-                  <p>Facebook</p>
-                </>
-              )}
-            </button>
-            
           </div>
         </div>
       </div>
