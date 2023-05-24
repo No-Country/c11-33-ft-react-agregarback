@@ -23,7 +23,7 @@ export default async function Home() {
             START AN EMPTY WORKOUT
           </Link>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3 mt-9">
           <div>
             <div className="mb-3">
               <h2 className="mr-2 inline uppercase text-black/80">
@@ -42,7 +42,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="font-roboto col-start-3"> 
+          <div className="font-roboto sm:col-start-3"> 
             <div className="mb-3">
               <h2 className="mr-2 inline uppercase text-black/80">
                 SAMPLE TEMPLATES
