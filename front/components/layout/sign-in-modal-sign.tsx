@@ -32,6 +32,7 @@ const SignInModal = ({
           </h3>
           <div className="col-span-2 space-y-3">
             <span className="font-roboto text-black/50">Enter your credentials to access your account</span>
+            <FormSign />
           </div>
             <button
               disabled={signInClicked}
