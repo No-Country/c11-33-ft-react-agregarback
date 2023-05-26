@@ -46,8 +46,80 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
+<<<<<<< HEAD
   Routine       Routine[]
+=======
+  routines      Routine[]
+>>>>>>> origin/api
   sessions      Session[]
+}
+
+model Routine {
+  id          Int          @id @default(autoincrement())
+  name        String
+  createdAt   DateTime     @default(now())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id])
+  routineDays RoutineDay[]
+}
+
+model RoutineDay {
+  id           Int               @id @default(autoincrement())
+  day          Int
+  routineId    Int
+  week         Int
+  exerciseLogs ExerciseLog[]
+  routine      Routine           @relation(fields: [routineId], references: [id])
+  exercises    RoutineExercise[]
+}
+
+model Exercise {
+  id               Int               @id @default(autoincrement())
+  name             String
+  bodyPart         String
+  equipment        String
+  gifUrl           String
+  target           String
+  useful           Boolean           @default(false)
+  logs             ExerciseLog[]
+  maxLogs          ExerciseMaxLog[]
+  routineExercises RoutineExercise[]
+}
+
+model ExerciseLog {
+  id                Int             @id @default(autoincrement())
+  exerciseId        Int
+  weight            Float
+  reps              Int
+  date              DateTime
+  routineDayId      Int
+  routineExerciseId Int
+  exercise          Exercise        @relation(fields: [exerciseId], references: [id])
+  routineDay        RoutineDay      @relation(fields: [routineDayId], references: [id])
+  routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+
+model ExerciseMaxLog {
+  id                Int             @id @default(autoincrement())
+  exerciseId        Int
+  maxWeight         Float
+  maxReps           Int
+  date              DateTime
+  routineExerciseId Int             @unique
+  exercise          Exercise        @relation(fields: [exerciseId], references: [id])
+  routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+
+model RoutineExercise {
+  id           Int             @id @default(autoincrement())
+  exerciseId   Int
+  sets         Int
+  repetitions  Int
+  routineDayId Int
+  logs         ExerciseLog[]
+  maxLog       ExerciseMaxLog?
+  exercise     Exercise        @relation(fields: [exerciseId], references: [id])
+  routineDay   RoutineDay      @relation(fields: [routineDayId], references: [id])
 }
 
 model VerificationToken {
@@ -57,6 +129,7 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+<<<<<<< HEAD
 
 model Exercise {
   id              Int               @id @default(autoincrement())
@@ -87,3 +160,5 @@ model RoutineExercise {
   Exercise    Exercise @relation(fields: [exerciseId], references: [id])
   Routine     Routine  @relation(fields: [routineId], references: [id])
 }
+=======
+>>>>>>> origin/api
