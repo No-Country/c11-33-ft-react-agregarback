@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -10,38 +8,62 @@ export default async function handler(
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const { userId, name, exerciseIds } = req.body;
-
-  if (!userId || typeof userId !== "string") {
-    return res.status(400).json({ message: "Invalid userId" });
-  }
-
-  if (!name || typeof name !== "string") {
-    return res.status(400).json({ message: "Invalid name" });
-  }
-
   try {
-    const { userId, name, exercises } = req.body;
-    const routine = await prisma.routine.create({
+    const { name, routineDays, userId } = req.body;
+
+    const createdRoutine = await prisma.routine.create({
       data: {
         name,
         userId,
-        exercises: {
-          create: exercises.map((exercise: any) => ({
-            exerciseId: exercise.exerciseId,
-            sets: exercise.sets,
-            repetitions: exercise.repetitions,
+        routineDays: {
+          create: routineDays.map((routineDay: any) => ({
+            day: routineDay.day,
+            week: routineDay.week,
+            exercises: {
+              create: routineDay.exercises.map((exercise: any) => ({
+                sets: exercise.sets,
+                repetitions: exercise.repetitions,
+                logs: {
+                  create: exercise.logs.map((log: any) => ({
+                    weight: log.weight,
+                    reps: log.reps,
+                    date: new Date(log.date),
+                  })),
+                },
+                maxLog: exercise.maxLog
+                  ? {
+                      create: {
+                        maxWeight: exercise.maxLog.maxWeight,
+                        maxReps: exercise.maxLog.maxReps,
+                        date: new Date(exercise.maxLog.date),
+                      },
+                    }
+                  : undefined,
+                exercise: {
+                  connect: { id: exercise.exerciseId },
+                },
+              })),
+            },
           })),
         },
       },
       include: {
-        exercises: true,
+        routineDays: {
+          include: {
+            exercises: {
+              include: {
+                logs: true,
+                maxLog: true,
+                exercise: true,
+              },
+            },
+          },
+        },
       },
     });
-
-    res.status(201).json({ routine });
+    res.status(201).json(createdRoutine);
   } catch (error) {
-    console.error("Error creating routine:", error);
-    res.status(500).json({ error: "Unable to create routine" });
+    console.error(error);
+    res.status(500).json({ error: "Failed to create routine" });
   }
 }
