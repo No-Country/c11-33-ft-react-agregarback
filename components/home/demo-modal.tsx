@@ -1,6 +1,7 @@
 import Modal from "@/components/shared/modal";
+
 import {
-  useState,
+useState,
   Dispatch,
   SetStateAction,
   useCallback,
