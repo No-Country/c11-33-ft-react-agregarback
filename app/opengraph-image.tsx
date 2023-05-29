@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
+import React from "react"
 
 export const runtime = "edge";
 export const alt = "Precedent - Building blocks for your Next.js project";
@@ -28,7 +29,7 @@ export default async function OG() {
         <img
           src={new URL("../public/logo.png", import.meta.url).toString()}
           alt="Precedent Logo"
-          tw="w-20 h-20 mb-4 opacity-95"
+          className="w-20 h-20 mb-4 opacity-95"
         />
         <h1
           style={{
