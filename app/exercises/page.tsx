@@ -22,14 +22,7 @@ export default async function Exercises() {
 
   console.log(data);
 
-  // Agrupar elementos por letra de inicio
   const groupedItems = data.reduce((acc, exercise) => {
-    // console.log(exercise.name[0])
-    // if(isNan(exercise.name[0])){
-    //   const firstLetter = exercise.name[0].toUpperCase();
-    // } else{
-    //   const firstLetter = exercise.name[0];
-    // }
     const firstLetter = exercise.name[0];
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
@@ -37,8 +30,6 @@ export default async function Exercises() {
     acc[firstLetter].push(exercise);
     return acc;
   }, {} as { [letter: string]: Exercise[] });
-
-  // console.log(groupedItems)
 
   return (
     <div className="z-10 h-full w-full">

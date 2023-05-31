@@ -6,22 +6,21 @@ export default function cardExercise({
   description,
   image,
 }: {
-  id:number;
+  id: number;
   title: string;
   description: string;
   image: string;
 }) {
-  // console.log(title, description, image);
   return (
-    <div className="w-120 z-10 mx-2  my-3 box-border flex h-24 border-accent-600 border-[1px] border-dashed rounded p-2 text-black bg-transparent">
-      <div className="mr-2 flex basis-1/4 justify-center items-center">
-      <Link href="/exercises/[id]/about" as={`/exercises/${id}/about`}>
-        <img className="w-h-full rounded" src={image} alt={title} />
-      </Link>
+    <div className="w-120 border-accent-600 z-10  mx-2 my-3 box-border flex h-24 rounded border-[1px] border-dashed bg-transparent p-2 text-black">
+      <div className="mr-2 flex basis-1/4 items-center justify-center">
+        <Link href="/exercises/[id]/about" as={`/exercises/${id}/about`}>
+          <img className="w-h-full rounded" src={image} alt={title} />
+        </Link>
       </div>
       <div className="basis-3/4">
-        <p className="text-accent-600 font-bold text-xl mb-1x">{title}</p>
-        <span className="text-neutral-100 font-thin">{description}</span>
+        <p className="text-accent-600 mb-1x text-xl font-bold">{title}</p>
+        <span className="font-thin text-neutral-100">{description}</span>
       </div>
     </div>
   );

@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation";
 export default function NavExercises({ id }: { id: number }) {
   const pathName = usePathname();
 
-  console.log(pathName);
-
   const links = [
     {
       label: "About",
@@ -25,8 +23,6 @@ export default function NavExercises({ id }: { id: number }) {
       as: `/exercises/${id}/records`,
     },
   ];
-
-  console.log(links);
 
   return (
     <nav className="w-full">
