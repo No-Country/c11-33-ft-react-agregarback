@@ -1,32 +1,3 @@
 {
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "tsx": true
-    }
-  },
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "rules": {
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
-    // Customize your rules here
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  }
+  "extends": "next/core-web-vitals"
 }
