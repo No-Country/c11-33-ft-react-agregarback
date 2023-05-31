@@ -61,8 +61,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "postcss": "^8.4.21",
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
     "prettier": "^2.8.2",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^4.13.0",
