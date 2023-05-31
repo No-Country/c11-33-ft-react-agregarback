@@ -1,34 +1,29 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -40,6 +35,7 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
 }
 
@@ -50,6 +46,7 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
+  Routine       Routine[]
   sessions      Session[]
 }
 
@@ -59,4 +56,72 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Exercise {
+  id              Int               @id @default(autoincrement())
+  name            String
+  bodyPart        String
+  equipment       String
+  gifUrl          String
+  target          String
+  useful          Boolean           @default(false)
+  ExerciseLog     ExerciseLog[]
+  ExerciseMaxLog  ExerciseMaxLog[]
+  RoutineExercise RoutineExercise[]
+}
+
+model ExerciseLog {
+  id                Int             @id @default(autoincrement())
+  exerciseId        Int
+  weight            Float
+  reps              Int
+  date              DateTime
+  routineDayId      Int
+  routineExerciseId Int
+  Exercise          Exercise        @relation(fields: [exerciseId], references: [id])
+  RoutineDay        RoutineDay      @relation(fields: [routineDayId], references: [id])
+  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+
+model ExerciseMaxLog {
+  id                Int             @id @default(autoincrement())
+  exerciseId        Int
+  maxWeight         Float
+  maxReps           Int
+  date              DateTime
+  routineExerciseId Int             @unique
+  Exercise          Exercise        @relation(fields: [exerciseId], references: [id])
+  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+
+model Routine {
+  id         Int          @id @default(autoincrement())
+  name       String
+  createdAt  DateTime     @default(now())
+  userId     String
+  User       User         @relation(fields: [userId], references: [id])
+  RoutineDay RoutineDay[]
+}
+
+model RoutineDay {
+  id              Int               @id @default(autoincrement())
+  day             Int
+  routineId       Int
+  week            Int
+  ExerciseLog     ExerciseLog[]
+  Routine         Routine           @relation(fields: [routineId], references: [id])
+  RoutineExercise RoutineExercise[]
+}
+
+model RoutineExercise {
+  id             Int             @id @default(autoincrement())
+  exerciseId     Int
+  sets           Int
+  repetitions    Int
+  routineDayId   Int
+  ExerciseLog    ExerciseLog[]
+  ExerciseMaxLog ExerciseMaxLog?
+  Exercise       Exercise        @relation(fields: [exerciseId], references: [id])
+  RoutineDay     RoutineDay      @relation(fields: [routineDayId], references: [id])
 }
