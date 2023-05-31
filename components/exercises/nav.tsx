@@ -25,7 +25,7 @@ export default function NavExercises({ id }: { id: number }) {
   ];
 
   return (
-    <nav className="w-full">
+    <nav className="w-full md:hidden">
       <ul className=" flex w-full">
         {links.map(({ label, route, as }) => {
           return (
