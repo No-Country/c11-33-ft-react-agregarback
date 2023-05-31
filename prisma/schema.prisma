@@ -66,62 +66,47 @@ model Exercise {
   gifUrl          String
   target          String
   useful          Boolean           @default(false)
-  ExerciseLog     ExerciseLog[]
-  ExerciseMaxLog  ExerciseMaxLog[]
   RoutineExercise RoutineExercise[]
 }
 
-model ExerciseLog {
-  id                Int             @id @default(autoincrement())
-  exerciseId        Int
-  weight            Float
-  reps              Int
-  date              DateTime
-  routineDayId      Int
-  routineExerciseId Int
-  Exercise          Exercise        @relation(fields: [exerciseId], references: [id])
-  RoutineDay        RoutineDay      @relation(fields: [routineDayId], references: [id])
-  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
-}
-
-model ExerciseMaxLog {
-  id                Int             @id @default(autoincrement())
-  exerciseId        Int
-  maxWeight         Float
-  maxReps           Int
-  date              DateTime
-  routineExerciseId Int             @unique
-  Exercise          Exercise        @relation(fields: [exerciseId], references: [id])
-  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
-}
-
 model Routine {
-  id         Int          @id @default(autoincrement())
-  name       String
-  createdAt  DateTime     @default(now())
-  userId     String
-  User       User         @relation(fields: [userId], references: [id])
-  RoutineDay RoutineDay[]
-}
-
-model RoutineDay {
   id              Int               @id @default(autoincrement())
-  day             Int
-  routineId       Int
-  week            Int
-  ExerciseLog     ExerciseLog[]
-  Routine         Routine           @relation(fields: [routineId], references: [id])
+  userId          String
+  User            User              @relation(fields: [userId], references: [id])
   RoutineExercise RoutineExercise[]
 }
 
 model RoutineExercise {
-  id             Int             @id @default(autoincrement())
-  exerciseId     Int
-  sets           Int
-  repetitions    Int
-  routineDayId   Int
-  ExerciseLog    ExerciseLog[]
-  ExerciseMaxLog ExerciseMaxLog?
-  Exercise       Exercise        @relation(fields: [exerciseId], references: [id])
-  RoutineDay     RoutineDay      @relation(fields: [routineDayId], references: [id])
+  id         Int      @id @default(autoincrement())
+  exerciseId Int
+  routineId  Int
+  Log        Log[]
+  MaxLog     MaxLog?
+  Exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  Routine    Routine  @relation(fields: [routineId], references: [id])
+}
+
+model Log {
+  id                Int             @id @default(autoincrement())
+  date              DateTime
+  routineExerciseId Int
+  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+  Set               Set[]
+}
+
+model MaxLog {
+  id                Int             @id @default(autoincrement())
+  maxWeight         Int
+  maxReps           Int
+  date              DateTime
+  routineExerciseId Int             @unique
+  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+
+model Set {
+  id     Int @id @default(autoincrement())
+  weight Int
+  reps   Int
+  logId  Int
+  Log    Log @relation(fields: [logId], references: [id])
 }

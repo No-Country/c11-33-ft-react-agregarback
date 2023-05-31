@@ -9,6 +9,8 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
+import FormSign from "./authForm/FormSign";
+
 
 const SignInModal = ({
   showSignInModal,
@@ -27,6 +29,10 @@ const SignInModal = ({
           <h3 className=" col-span-2 text-left font-display text-2xl font-bold">
             Sign In
           </h3>
+          <div className="col-span-2 space-y-3">
+            <span className="font-variant text-black/50">Enter your credentials to access your account</span>
+            <FormSign />
+          </div>
             <button
               disabled={signInClicked}
               className={`${
@@ -63,7 +69,7 @@ const SignInModal = ({
               } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
               onClick={() => {
                 setSignInClicked(true);
-                signIn("facebook");
+                signIn('facebook');
               }}
             >
               {signInClicked ? (
