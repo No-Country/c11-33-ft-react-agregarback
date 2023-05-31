@@ -8,6 +8,37 @@ module.exports = {
   },
   theme: {
     extend: {
+      colors: {
+        primary: {
+          400: "#1C2B2D",
+          500: "#1F6F8B",
+        },
+        accent: {
+          400: "#DC2626",
+          500: "#1D66D2",
+          600: "#E6D5B8",
+        },
+        neutral: {
+          100: "#FAFAFA",
+          400: "#99A8B2",
+          500: "#64748B",
+          600: "#404A59",
+          900: "#212326",
+        },
+      },
+      fontSize: {
+        "x-sm": "0.75rem",
+        sm: "0.875rem",
+        md: "1rem",
+        lg: "1.25rem",
+        xl: "1.5rem",
+        "2xl": "1.75rem",
+        "3xl": "2rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "4rem",
+        "7xl": "5rem",
+      },
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],
         default: ["var(--font-inter)", "system-ui", "sans-serif"],
