@@ -70,7 +70,7 @@ export default function Dashboard() {
     <Bar
       options={options}
       data={data}
-      className="w-full rounded border-[1px] p-1"
+      className="w-full rounded border-[1px] p-2"
     />
   );
 }
