@@ -52,20 +52,22 @@ export default async function Exercises() {
 
   if (data.length <= 0)
     return (
-      <div className="bg-fondo z-10 h-full  w-full text-2xl text-neutral-100">
+      <div className="z-10 h-full bg-primary-400   w-full text-2xl text-neutral-100">
         No hay data cargada
       </div>
     );
   return (
-    <div className="z-10 h-full w-full bg-primary-400 py-5 md:flex md:flex-wrap md:justify-center md:gap-6">
+    <div className="z-10 h-full w-full px-20 bg-primary-400 py-5  grid-auto-fit gap-6">
       {Object.keys(groupedItems)
         .sort()
         .map((letter) => (
-          <div key={letter} className="w-full md:flex md:w-[400px]">
-            <h2 className="mx-2 rounded-sm text-2xl font-semibold text-neutral-100">
+          <div key={letter}
+          className="w-full md:flex  gap-4"
+          >
+            <span className="rounded-sm text-2xl font-semibold text-neutral-100">
               {letter.toUpperCase()}
-            </h2>
-            <ul>
+            </span>
+            <ul className="w-full">
               {groupedItems[letter]
                 .map(({ id, name, bodyPart, gifUrl }) => (
                   <Card
