@@ -26,15 +26,15 @@ export default async function Home() {
         <div className="grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3 mt-9">
 
             
-              <Link href={'/create/routine'} className="border-2 rounded-xl duration-300 hover:shadow-2xl border-black w-56 p-2 pt-0">
+              <Link href={'/create/routine'} className="border-2 group hover:bg-black rounded-xl duration-300 hover:shadow-2xl border-black w-56 p-2 pt-0">
 
                 <div className="mb-3">
-                  <h2 className="mr-2 inline uppercase text-black/80">
+                  <h2 className="mr-2 inline uppercase group-hover:text-white  text-black/80">
                     MY TEMPLATES
                   </h2>
-                  <span className="text-2xl text-black/90">+</span>
+                  <span className="text-2xl text-black/90 group-hover:text-white">+</span>
                 </div>
-                <div className="w-40 font-roboto text-xs">
+                <div className="w-40 font-roboto text-xs group-hover:text-white">
                   <p>
                     You don’t have any custom templates yet.
                   </p>
