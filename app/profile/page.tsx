@@ -2,7 +2,7 @@ import Dashboard from "@/components/profile/dashboard";
 
 export default function Profile() {
   return (
-    <div className="z-10 h-full w-full p-6 text-neutral-100">
+    <div className="z-10 h-full w-full bg-primary-400 p-6 text-neutral-100">
       <div className="flex flex-row gap-3 py-3">
         <div className="w-[50px] rounded-full">
           <img
@@ -17,8 +17,19 @@ export default function Profile() {
         </div>
       </div>
       <div>
-        <h3>DASHBOARD</h3>
-        <Dashboard/>
+        <h3 className="py-5">DASHBOARD</h3>
+
+        <div className="flex w-full flex-col content-center gap-5 md:flex-row md:flex-wrap md:justify-start lg:justify-center">
+          <div className="flex w-full justify-center md:h-60 md:w-[450px] lg:w-[550px]">
+            <Dashboard />
+          </div>
+          <div className="flex w-full justify-center md:h-60 md:w-[450px]  lg:w-[550px]">
+            <Dashboard />
+          </div>
+          <div className="flex w-full justify-center md:h-60 md:w-[450px]  lg:w-[550px]">
+            <Dashboard />
+          </div>
+        </div>
       </div>
     </div>
   );
