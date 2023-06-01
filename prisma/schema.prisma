@@ -46,16 +46,15 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
-  Routine       Routine[]
+  routines      Routine[]
   sessions      Session[]
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
+model Routine {
+  id               Int               @id @default(autoincrement())
+  userId           String
+  user             User              @relation(fields: [userId], references: [id])
+  routineExercises RoutineExercise[]
 }
 
 model Exercise {
@@ -66,47 +65,47 @@ model Exercise {
   gifUrl          String
   target          String
   useful          Boolean           @default(false)
-  RoutineExercise RoutineExercise[]
-}
-
-model Routine {
-  id              Int               @id @default(autoincrement())
-  userId          String
-  User            User              @relation(fields: [userId], references: [id])
-  RoutineExercise RoutineExercise[]
+  routineExercises RoutineExercise[]
 }
 
 model RoutineExercise {
-  id         Int      @id @default(autoincrement())
-  exerciseId Int
+  id         Int       @id @default(autoincrement())
   routineId  Int
-  Log        Log[]
-  MaxLog     MaxLog?
-  Exercise   Exercise @relation(fields: [exerciseId], references: [id])
-  Routine    Routine  @relation(fields: [routineId], references: [id])
+  exerciseId Int
+  routine    Routine   @relation(fields: [routineId], references: [id])
+  exercise   Exercise  @relation(fields: [exerciseId], references: [id])
+  logs       Log[]
+  maxLog     MaxLog?
 }
 
 model Log {
-  id                Int             @id @default(autoincrement())
-  date              DateTime
+  id         Int       @id @default(autoincrement())
+  sets       Set[]
+  date       DateTime
   routineExerciseId Int
-  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
-  Set               Set[]
-}
-
-model MaxLog {
-  id                Int             @id @default(autoincrement())
-  maxWeight         Int
-  maxReps           Int
-  date              DateTime
-  routineExerciseId Int             @unique
-  RoutineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+  routineExercise RoutineExercise @relation(fields: [routineExerciseId], references: [id])
 }
 
 model Set {
-  id     Int @id @default(autoincrement())
-  weight Int
-  reps   Int
-  logId  Int
-  Log    Log @relation(fields: [logId], references: [id])
+  id         Int       @id @default(autoincrement())
+  weight     Int
+  reps       Int
+  logId      Int
+  log        Log       @relation(fields: [logId], references: [id])
+}
+
+model MaxLog {
+  id          Int       @id @default(autoincrement())
+  maxWeight   Int
+  maxReps     Int
+  date        DateTime
+  routineExerciseId Int @unique
+  routineExercise RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+}
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
