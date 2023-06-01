@@ -1,4 +1,4 @@
-import FormTest from '../../../components/test/FormRoutine.tsx'
+import FormTest from '../../../components/test/FormRoutine'
 
 
 export default async function Home() {

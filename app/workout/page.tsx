@@ -25,9 +25,8 @@ export default async function Home() {
         </div>
         <div className="grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3 mt-9">
 
-          <div className='justify-start'>
-            <Link href={'/develop/test'}>
-              <div className="border-2 rounded-xl duration-300 hover:shadow-2xl border-black w-56 p-2 pt-0">
+            
+              <Link href={'/create/routine'} className="border-2 rounded-xl duration-300 hover:shadow-2xl border-black w-56 p-2 pt-0">
 
                 <div className="mb-3">
                   <h2 className="mr-2 inline uppercase text-black/80">
@@ -44,9 +43,7 @@ export default async function Home() {
                     Tap the ‘+’ button to create your first template!
                   </p>
                 </div>
-          </div>
-            </Link>
-        </div>
+          </Link>
         <div />
 
         <div className="font-roboto sm:col-start-3">
