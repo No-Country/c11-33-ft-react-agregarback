@@ -6,6 +6,7 @@ import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import React from "react";
+import Provider from '@/components/test/Providers'
 
 export const metadata = {
   title: "Fitnnes",
@@ -26,6 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <Provider>
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
         <div className="fixed h-screen w-full from-indigo-50 via-white to-cyan-100" />
@@ -40,5 +42,6 @@ export default async function RootLayout({
         <Analytics />
       </body>
     </html>
+    </Provider>
   );
 }
