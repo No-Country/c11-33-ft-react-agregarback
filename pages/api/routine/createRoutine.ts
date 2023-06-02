@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -28,9 +29,6 @@ export default async function handler(
           routineExercises: {
             create: exercises.map((exercise: any) => ({
               exercise: { connect: { id: exercise.id } },
-              logs: {
-                create: [], // hacer un prisma.update para populear esto
-              },
             })),
           },
         },
@@ -49,10 +47,55 @@ export default async function handler(
         },
       });
 
-      res.status(201).json({ success: true, data: routine });
+      const logPromises = exercises.map(async (exercise: any) => {
+        const routineExercise = await prisma.routineExercise.findFirst({
+          where: {
+            routineId: routine.id,
+            exerciseId: exercise.id,
+          },
+        });
+
+        if (routineExercise) {
+          await prisma.log.create({
+            data: {
+              date: new Date(),
+              routineExercise: {
+                connect: {
+                  id: routineExercise.id,
+                },
+              },
+            },
+          });
+        }
+      });
+
+      await Promise.all(logPromises);
+
+      const updatedRoutine = await prisma.routine.findUnique({
+        where: {
+          id: routine.id,
+        },
+        include: {
+          routineExercises: {
+            include: {
+              exercise: true,
+              logs: {
+                include: {
+                  sets: true,
+                },
+              },
+              maxLog: true,
+            },
+          },
+        },
+      });
+
+      res.status(201).json({ success: true, data: updatedRoutine });
     } catch (error) {
       console.error(error);
       res.status(500).json({ success: false, error: "Server error" });
     }
+  } else {
+    res.status(405).json({ success: false, error: "Method not allowed" });
   }
 }

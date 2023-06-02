@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   try {
     const headers = {
-      "X-RapidAPI-Key": "10750bee93msha09cae90db0ac58p195fdfjsna4904a8fe8ba",
+      "X-RapidAPI-Key": "3667edba73msh4729e7310b9cdb7p1496f0jsn2ef3699cff84",
       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
     };
 
@@ -30,7 +30,6 @@ export default async function handler(
         },
       });
     }
-
     console.log("Exercises saved to database.");
     res.status(200).json({ message: "Exercises saved to database." });
   } catch (error) {
