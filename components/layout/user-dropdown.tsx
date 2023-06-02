@@ -13,6 +13,9 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import Link from "next/link";
 
+//imgs imports 
+import workout from 'public/icons/workout.svg'
+import exercises from 'public/icons/exercises.svg'
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
@@ -36,18 +39,20 @@ export default function UserDropdown({ session }: { session: Session }) {
             <Link href={'/workout'} className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100">
               <Image
                 alt="workout img"
-                src="icons/workout.svg"
+                src={workout}
                 width={18}
                 height={18}
+                priority={true}	
               />
               <p className="text-sm">Workout</p>
             </Link>
             <Link href={'/exercises'} className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100">
               <Image
                 alt="exercises img"
-                src="icons/exercises.svg"
+                src={exercises}
                 width={19}
                 height={19}
+                priority={true}	
               />
               <p className="text-sm">Exercises</p>
             </Link>
@@ -77,6 +82,7 @@ export default function UserDropdown({ session }: { session: Session }) {
             src={image || `https://avatars.dicebear.com/api/micah/${email}.svg`}
             width={40}
             height={40}
+            priority={true}	
           />
         </button>
       </Popover>
