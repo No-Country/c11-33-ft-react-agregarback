@@ -53,55 +53,57 @@ model User {
 model Routine {
   id               Int               @id @default(autoincrement())
   userId           String
+  createdAt        DateTime          @default(now()) @db.Timestamptz(3)
   user             User              @relation(fields: [userId], references: [id])
   routineExercises RoutineExercise[]
 }
 
 model Exercise {
-  id              Int               @id @default(autoincrement())
-  name            String
-  bodyPart        String
-  equipment       String
-  gifUrl          String
-  target          String
-  useful          Boolean           @default(false)
+  id               Int               @id @default(autoincrement())
+  name             String
+  bodyPart         String
+  equipment        String
+  gifUrl           String
+  target           String
+  useful           Boolean           @default(false)
   routineExercises RoutineExercise[]
 }
 
 model RoutineExercise {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   routineId  Int
   exerciseId Int
-  routine    Routine   @relation(fields: [routineId], references: [id])
-  exercise   Exercise  @relation(fields: [exerciseId], references: [id])
   logs       Log[]
   maxLog     MaxLog?
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  routine    Routine  @relation(fields: [routineId], references: [id])
 }
 
 model Log {
-  id         Int       @id @default(autoincrement())
-  sets       Set[]
-  date       DateTime
+  id                Int             @id @default(autoincrement())
+  date              DateTime
   routineExerciseId Int
-  routineExercise RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+  routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+  sets              Set[]
 }
 
 model Set {
-  id         Int       @id @default(autoincrement())
-  weight     Int
-  reps       Int
-  logId      Int
-  log        Log       @relation(fields: [logId], references: [id])
+  id     Int @id @default(autoincrement())
+  weight Int
+  reps   Int
+  logId  Int
+  log    Log @relation(fields: [logId], references: [id])
 }
 
 model MaxLog {
-  id          Int       @id @default(autoincrement())
-  maxWeight   Int
-  maxReps     Int
-  date        DateTime
-  routineExerciseId Int @unique
-  routineExercise RoutineExercise @relation(fields: [routineExerciseId], references: [id])
+  id                Int             @id @default(autoincrement())
+  maxWeight         Int
+  maxReps           Int
+  date              DateTime
+  routineExerciseId Int             @unique
+  routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
 }
+
 model VerificationToken {
   identifier String
   token      String   @unique
