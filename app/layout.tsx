@@ -6,7 +6,9 @@ import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import React from "react";
-import Provider from '@/components/test/Providers'
+
+
+
 
 export const metadata = {
   title: "Fitnnes",
@@ -21,13 +23,14 @@ export const metadata = {
   themeColor: "#FFF",
 };
 
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+})
+ {
   return (
-    <Provider>
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
         <div className="fixed h-screen w-full from-indigo-50 via-white to-cyan-100" />
@@ -36,12 +39,12 @@ export default async function RootLayout({
           <Nav />
         </Suspense>
         <main className="flex min-h-screen w-full flex-col items-center py-16">
-          {children}
+            {children}
         </main>
         <Footer />
         <Analytics />
       </body>
     </html>
-    </Provider>
+
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { getCsrfToken, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 interface UserData {
@@ -9,8 +9,9 @@ interface UserData {
   email: string;
 }
 
-export default function Testing() {
+export const useUserData = (): [UserData | null, boolean] => {
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,28 +20,21 @@ export default function Testing() {
         const response = await fetch("/api/user/getUserBySession");
         console.log("Response:", response);
         const data: UserData = await response.json();
+        const csrfToken = await getCsrfToken();
+        console.log('Token', csrfToken);
         console.log("Data:", data);
         setUserData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
-  return (
-    <div>
-      {userData ? (
-        <div>
-          <h1>User Data</h1>
-          <p>User ID: {userData.id}</p>
-          <p>Name: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          {/* Display other user data as needed */}
-        </div>
-      ) : (
-        <p>Loading user data...</p>
-      )}
-    </div>
-  );
-}
+
+  return [userData, loading,];
+};
+
+export default useUserData

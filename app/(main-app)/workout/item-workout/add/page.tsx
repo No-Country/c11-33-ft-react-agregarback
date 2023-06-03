@@ -1,4 +1,4 @@
-import Exercise  from '../../../../components/test/CreateExercises'
+import Exercise  from '../../../../../components/test/CreateExercises'
 import React from 'react'
 
 
