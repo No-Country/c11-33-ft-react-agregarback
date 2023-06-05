@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image"
 
 interface Exercise {
   id: number;
@@ -133,10 +134,12 @@ const RoutineComponent: React.FC = () => {
                 Exercise Name: {exercise.exercise.name}
               </p>
               <div className="mt-2">
-                <img
+                <Image
                   src={exercise.exercise.gifUrl}
                   alt={exercise.exercise.name}
                   className="h-32 w-32 rounded-lg object-cover"
+                  height={400}
+                  width={400}
                 />
               </div>
               {exercise.logs.length > 0 ? (
@@ -209,10 +212,12 @@ const RoutineComponent: React.FC = () => {
                 key={exercise.id}
                 className="flex items-center rounded-md bg-gray-200 p-4"
               >
-                <img
+                <Image
                   src={exercise.exercise.gifUrl}
                   alt="Exercise"
                   className="h-24 w-24 rounded-full"
+                  height={400}
+                  width={400}
                 />
                 <div className="ml-4">
                   <h2 className="text-xl font-bold">
