@@ -24,7 +24,5 @@ export default async function handler(
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ message: "Error occurred while fetching exercise" });
-  } finally {
-    await prisma.$disconnect();
   }
 }

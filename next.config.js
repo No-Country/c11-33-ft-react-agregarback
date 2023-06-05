@@ -7,6 +7,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "vercel.com",
       "d205bpvrqc9yn1.cloudfront.net",
+      "ik.imagekit.io",
     ],
   },
   async redirects() {

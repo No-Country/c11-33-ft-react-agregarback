@@ -23,7 +23,5 @@ export default async function handler(
     res.status(500).json({
       message: "An error occurred while fetching body parts exercises.",
     });
-  } finally {
-    await prisma.$disconnect();
   }
 }

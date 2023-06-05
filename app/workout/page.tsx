@@ -19,11 +19,14 @@ export default async function Home() {
           <Balancer>Workout</Balancer>
         </h1>
         <div className="flex items-center justify-center">
-          <Link href={'/workout/item-workout'} className="boder-2 text-center border-black text-white hover:border-green-600 justify-center text-xs hover:bg-gray-700 py-2 px-5 mt-3 rounded-3xl bg-black duration-300 hover:text-green-300 lg:text-base">
+          <Link
+            href={"/workout/item-workout"}
+            className="boder-2 mt-3 justify-center rounded-3xl border-black bg-black px-5 py-2 text-center text-xs text-white duration-300 hover:border-green-600 hover:bg-gray-700 hover:text-green-300 lg:text-base"
+          >
             START AN EMPTY WORKOUT
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3 mt-9">
+        <div className="mt-9 grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3">
           <div>
             <div className="mb-3">
               <h2 className="mr-2 inline uppercase text-black/80">
@@ -31,18 +34,14 @@ export default async function Home() {
               </h2>
               <span className="text-2xl text-black/90">+</span>
             </div>
-            <div className="w-40 font-roboto text-xs">
-              <p>
-                You don’t have any custom templates yet.
-                </p>
+            <div className="font-roboto w-40 text-xs">
+              <p>You don’t have any custom templates yet.</p>
               <br />
-              <p>
-              Tap the ‘+’ button to create your first template!
-              </p>
+              <p>Tap the ‘+’ button to create your first template!</p>
             </div>
           </div>
 
-          <div className="font-roboto sm:col-start-3"> 
+          <div className="font-roboto sm:col-start-3">
             <div className="mb-3">
               <h2 className="mr-2 inline uppercase text-black/80">
                 SAMPLE TEMPLATES

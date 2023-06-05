@@ -37,7 +37,5 @@ export default async function handler(
     res
       .status(500)
       .json({ message: "Error occurred while saving exercises to database." });
-  } finally {
-    await prisma.$disconnect();
   }
 }

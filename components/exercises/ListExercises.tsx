@@ -27,7 +27,7 @@ export default function ListExercises({ path }: { path: string }) {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/exercises/getExercises"
+          "/api/exercises/getExercises"
         );
         const data = await res.json();
         setData(data.exercises);
@@ -55,7 +55,7 @@ export default function ListExercises({ path }: { path: string }) {
 
   const handleCreate = async ()=>{
     try {
-      const res = await axios.post("http://localhost:3000/api/routine/createRoutine", {
+      const res = await axios.post("/api/routine/createRoutine", {
         name:"Rutina Joe",
         exercises: exercises
       })
