@@ -1,4 +1,4 @@
-import Label from "../../../../components/exercises/record/label";
+import Label from "@/components/exercises/record/label";
 
 export default function Records() {
   return (

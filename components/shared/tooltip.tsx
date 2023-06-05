@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { type ReactNode, useState } from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import useWindowSize from "@/lib/hooks/use-window-size";
 import Leaflet from "./leaflet";
@@ -24,7 +24,9 @@ export default function Tooltip({
         <button
           type="button"
           className={`${fullWidth ? "w-full" : "inline-flex"} sm:hidden`}
-          onClick={() => setOpenTooltip(true)}
+          onClick={() => {
+            setOpenTooltip(true);
+          }}
         >
           {children}
         </button>

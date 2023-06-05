@@ -26,7 +26,7 @@ export async function fetcher<JSON = any>(
     }
   }
 
-  return res.json();
+  return await res.json();
 }
 
 export function nFormatter(num: number, digits?: number) {
@@ -48,7 +48,7 @@ export function nFormatter(num: number, digits?: number) {
       return num >= item.value;
     });
   return item
-    ? (num / item.value).toFixed(digits || 1).replace(rx, "$1") + item.symbol
+    ? (num / item.value).toFixed(digits ?? 1).replace(rx, "$1") + item.symbol
     : "0";
 }
 

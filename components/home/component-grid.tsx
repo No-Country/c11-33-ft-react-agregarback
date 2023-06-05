@@ -13,7 +13,9 @@ export default function ComponentGrid() {
     <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
       <DemoModal />
       <button
-        onClick={() => setShowDemoModal(true)}
+        onClick={() => {
+          setShowDemoModal(true);
+        }}
         className="flex w-40 items-center justify-center rounded-md border border-gray-300 px-3 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
       >
         <p className="text-gray-600">Modal</p>
@@ -36,7 +38,9 @@ export default function ComponentGrid() {
         setOpenPopover={setOpenPopover}
       >
         <button
-          onClick={() => setOpenPopover(!openPopover)}
+          onClick={() => {
+            setOpenPopover(!openPopover);
+          }}
           className="flex w-40 items-center justify-between rounded-md border border-gray-300 px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
         >
           <p className="text-gray-600">Popover</p>

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
-import React from "react"
+import React from "react";
 
 export const runtime = "edge";
 export const alt = "Precedent - Building blocks for your Next.js project";
@@ -9,7 +9,7 @@ export const contentType = "image/png";
 export default async function OG() {
   const sfPro = await fetch(
     new URL("./fonts/SF-Pro-Display-Medium.otf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  ).then(async (res) => await res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -29,7 +29,7 @@ export default async function OG() {
         <img
           src={new URL("../public/logo.png", import.meta.url).toString()}
           alt="Precedent Logo"
-          className="w-20 h-20 mb-4 opacity-95"
+          className="mb-4 h-20 w-20 opacity-95"
         />
         <h1
           style={{

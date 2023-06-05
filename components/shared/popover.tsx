@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, ReactNode, useRef } from "react";
+import { type Dispatch, type SetStateAction, type ReactNode } from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import useWindowSize from "@/lib/hooks/use-window-size";
 import Leaflet from "./leaflet";
@@ -29,7 +29,9 @@ export default function Popover({
       {isDesktop && (
         <PopoverPrimitive.Root
           open={openPopover}
-          onOpenChange={(isOpen) => setOpenPopover(isOpen)}
+          onOpenChange={(isOpen) => {
+            setOpenPopover(isOpen);
+          }}
         >
           <PopoverPrimitive.Trigger className="inline-flex" asChild>
             {children}

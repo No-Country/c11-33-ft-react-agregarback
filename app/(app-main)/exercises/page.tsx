@@ -1,5 +1,4 @@
 import ListExercises from "@/components/exercises/ListExercises";
-import { headers } from "next/headers";
 
 export default async function Exercises() {
   // TODO ternario para componente
@@ -7,7 +6,5 @@ export default async function Exercises() {
   // const fullUrl = headersList.get("referer") || "";
   // const rute = fullUrl.split("/");
   // const path = rute[rute.length - 1];
-  return (
-    <ListExercises path="exercises" />
-  );
+  return <ListExercises path="exercises" />;
 }

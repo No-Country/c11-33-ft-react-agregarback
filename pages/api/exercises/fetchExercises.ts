@@ -1,8 +1,8 @@
 import axios from "axios";
 import prisma from "@/lib/prisma";
-import { NextApiResponse, NextApiRequest } from "next";
+import { type NextApiResponse, type NextApiRequest } from "next";
 
-//CUIDADO CON HACER GET !!! SOLO EN CASO DE LIMPIAR LA BASE DE DATOS
+// CUIDADO CON HACER GET !!! SOLO EN CASO DE LIMPIAR LA BASE DE DATOS
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,

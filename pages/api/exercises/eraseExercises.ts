@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 
 export default async function handler(
@@ -14,7 +14,7 @@ export default async function handler(
     await prisma.routineExercise.deleteMany();
 
     // Delete the records in the Exercise table
-    const deleteManyResult = await prisma.exercise.deleteMany();
+    // const deleteManyResult = await prisma.exercise.deleteMany();
 
     res.status(200).json({ message: "Records deleted successfully" });
   } catch (error) {

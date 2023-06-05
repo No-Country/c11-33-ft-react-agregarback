@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 
 interface Exercise {
   id: number;
@@ -107,7 +107,9 @@ const CreateRoutineForm = () => {
           type="text"
           id="routineName"
           value={routineName}
-          onChange={(e) => setRoutineName(e.target.value)}
+          onChange={(e) => {
+            setRoutineName(e.target.value);
+          }}
           className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
         />
       </div>
@@ -121,7 +123,9 @@ const CreateRoutineForm = () => {
         <select
           id="exerciseSelect"
           value={""}
-          onChange={(e) => handleAddExercise(Number(e.target.value))}
+          onChange={(e) => {
+            handleAddExercise(Number(e.target.value));
+          }}
           className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
         >
           <option value="" disabled>
@@ -148,7 +152,9 @@ const CreateRoutineForm = () => {
                 <span className="text-gray-700">{exercise.exercise.name}</span>
                 <button
                   type="button"
-                  onClick={() => handleRemoveExercise(exercise.id)}
+                  onClick={() => {
+                    handleRemoveExercise(exercise.id);
+                  }}
                   className="focus:shadow-outline rounded bg-red-500 px-2 py-1 font-bold text-white hover:bg-red-700 focus:outline-none"
                 >
                   Remove

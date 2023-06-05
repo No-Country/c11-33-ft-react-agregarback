@@ -1,12 +1,13 @@
 import prisma from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   if (req.method !== "GET") {
-    return res.status(405).json({ message: "Method Not Allowed" });
+    res.status(405).json({ message: "Method Not Allowed" });
+    return;
   }
 
   const { id } = req.query;
@@ -17,7 +18,8 @@ export default async function handler(
     });
 
     if (!exercise) {
-      return res.status(404).json({ message: "Exercise not found" });
+      res.status(404).json({ message: "Exercise not found" });
+      return;
     }
 
     res.status(200).json(exercise);

@@ -1,14 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const session = await getServerSession(req, res, authOptions);
-
   if (req.method === "POST") {
     try {
       const { routineId, logId, sets } = req.body;
@@ -19,7 +15,8 @@ export default async function handler(
       });
 
       if (!routine) {
-        return res.status(404).json({ error: "Routine not found" });
+        res.status(404).json({ error: "Routine not found" });
+        return;
       }
 
       // Find the log within the routine
@@ -29,7 +26,8 @@ export default async function handler(
       });
 
       if (!log) {
-        return res.status(404).json({ error: "Log not found" });
+        res.status(404).json({ error: "Log not found" });
+        return;
       }
 
       // Create sets and associate them with the log

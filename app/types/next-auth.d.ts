@@ -1,4 +1,7 @@
-import { Session as NextAuthSession, User as NextAuthUser } from "next-auth";
+import {
+  type Session as NextAuthSession,
+  type User as NextAuthUser,
+} from "next-auth";
 
 declare module "next-auth" {
   export interface User extends NextAuthUser {

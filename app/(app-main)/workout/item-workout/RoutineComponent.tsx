@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image"
+import Image from "next/image";
 
 interface Exercise {
   id: number;
@@ -25,11 +25,11 @@ interface Set {
 
 interface Routine {
   id: number;
-  routineExercises: {
+  routineExercises: Array<{
     logs: Log[];
     id: number;
     exercise: Exercise;
-  }[];
+  }>;
 }
 
 const RoutineComponent: React.FC = () => {
@@ -241,15 +241,15 @@ const RoutineComponent: React.FC = () => {
                               <div className="flex items-center">
                                 <button
                                   type="button"
-                                  onClick={() =>
-                                    handleAddSet(
+                                  onClick={async () => {
+                                    await handleAddSet(
                                       routine.id,
                                       exercise.id,
                                       log.id,
                                       newSet.weight,
                                       newSet.reps,
-                                    )
-                                  }
+                                    );
+                                  }}
                                   className="ml-2 mt-3 h-6 w-6 rounded-full bg-green-500 text-white"
                                 >
                                   +
@@ -258,7 +258,9 @@ const RoutineComponent: React.FC = () => {
                             ) : (
                               <button
                                 type="button"
-                                onClick={() => toggleSetInputVisible(true)}
+                                onClick={() => {
+                                  toggleSetInputVisible(true);
+                                }}
                                 className="ml-2 mt-3 h-6 w-6 rounded-full bg-green-500 text-white"
                               >
                                 +

@@ -4,8 +4,7 @@ import cx from "classnames";
 import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
-import { Suspense } from "react";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const metadata = {
   title: "Fitnnes",
@@ -33,7 +32,7 @@ export default async function RootLayout({
           {/* @ts-expect-error Server Component */}
           <Nav />
         </Suspense>
-        <main className="flex bg-primary-400 min-h-screen w-full flex-col items-center py-16">
+        <main className="flex min-h-screen w-full flex-col items-center bg-primary-400 py-16">
           {children}
         </main>
         <Footer />

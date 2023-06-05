@@ -6,7 +6,6 @@ interface Params {
 }
 
 export default function About({ params }: { params: Params }) {
-  const { id } = params;
   const searchParams = useSearchParams();
   const image: string | null | undefined = searchParams?.get("image");
   console.log("IMAGE:", image);

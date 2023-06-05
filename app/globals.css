@@ -2,16 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .grid-auto-fit {
   display: grid;
 
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(min(380px, 100%), 1fr)
-    );
+  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
 
-  column-gap:  1rem;
-  row-gap:  1rem;
+  column-gap: 1rem;
+  row-gap: 1rem;
 }

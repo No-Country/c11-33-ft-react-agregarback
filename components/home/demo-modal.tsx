@@ -1,9 +1,9 @@
 import Modal from "@/components/shared/modal";
 
 import {
-useState,
-  Dispatch,
-  SetStateAction,
+  useState,
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useMemo,
 } from "react";

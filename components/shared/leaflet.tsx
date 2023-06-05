@@ -1,4 +1,10 @@
-import { useEffect, useRef, ReactNode, Dispatch, SetStateAction } from "react";
+import {
+  useEffect,
+  useRef,
+  type ReactNode,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 
 export default function Leaflet({
@@ -22,7 +28,7 @@ export default function Leaflet({
   async function handleDragEnd(_: any, info: any) {
     const offset = info.offset.y;
     const velocity = info.velocity.y;
-    const height = leafletRef.current?.getBoundingClientRect().height || 0;
+    const height = leafletRef.current?.getBoundingClientRect().height ?? 0;
     if (offset > height / 2 || velocity > 800) {
       await controls.start({ y: "100%", transition: transitionProps });
       setShow(false);
@@ -61,7 +67,9 @@ export default function Leaflet({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setShow(false)}
+        onClick={() => {
+          setShow(false);
+        }}
       />
     </AnimatePresence>
   );

@@ -1,5 +1,4 @@
-import { NextApiResponse } from "next";
-import { NextApiRequest } from "next";
+import { type NextApiResponse, type NextApiRequest } from "next";
 import { getServerSession } from "next-auth/next";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -11,8 +10,9 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions);
 
   try {
-    if (!session || !session.user || !session.user.id) {
-      return res.status(401).json({ error: "Unauthorized" });
+    if (!session?.user?.id) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
     }
 
     console.log("User", session.user);

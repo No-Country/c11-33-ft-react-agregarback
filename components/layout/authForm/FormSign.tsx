@@ -45,12 +45,10 @@ const RegisterForm = () => {
     const errs = validate();
     if (errs) {
       setErrors(errs);
+    } else {
+      const { email, password } = formValues;
+      signIn("email", { email, password });
     }
-    else {
-      const {email,password} = formValues
-      signIn('email', { email, password })
-    }
-    
   };
 
   return (
@@ -72,12 +70,9 @@ const RegisterForm = () => {
         className="mb-4 rounded-md border-2 border-gray-300 px-4 py-2"
       />
       {errors.password && <p className="text-red-500">{errors.password}</p>}
-        <label
-          className={`font-variant font-semibold`}
-          htmlFor="password"
-        >
-          Password
-        </label>
+      <label className={`font-variant font-semibold`} htmlFor="password">
+        Password
+      </label>
       <input
         id="password"
         name="password"

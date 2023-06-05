@@ -6,12 +6,12 @@ const cardHistory = () => {
         <span className="text-neutral-100">Tuesday,May 16, 2023, 10:00 AM</span>
       </div>
       <div>
-        <p className="text-xl font-bold text-accent-600 mb-2">Sets perfomed</p>
+        <p className="mb-2 text-xl font-bold text-accent-600">Sets perfomed</p>
         <ul className="text-neutral-100">
-          <li >1 (+5lbs) x 20</li>
-          <li >2 (+5lbs) x 20</li>
-          <li >3 (+5lbs) x 20</li>
-          <li >4 (+5lbs) x 20</li>
+          <li>1 (+5lbs) x 20</li>
+          <li>2 (+5lbs) x 20</li>
+          <li>3 (+5lbs) x 20</li>
+          <li>4 (+5lbs) x 20</li>
         </ul>
       </div>
     </div>

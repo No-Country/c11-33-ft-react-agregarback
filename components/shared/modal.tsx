@@ -1,8 +1,8 @@
 "use client";
 
 import {
-  Dispatch,
-  SetStateAction,
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useEffect,
   useRef,
@@ -34,7 +34,9 @@ export default function Modal({
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [onKeyDown]);
 
   const { isMobile, isDesktop } = useWindowSize();
@@ -69,7 +71,9 @@ export default function Modal({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setShowModal(false)}
+                onClick={() => {
+                  setShowModal(false);
+                }}
               />
             </>
           )}
