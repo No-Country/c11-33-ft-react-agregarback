@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image"
+import Image from "next/image";
+import Trash from "../../../components/shared/icons/Trash";
 
 interface Exercise {
   id: number;
@@ -35,7 +36,8 @@ interface Routine {
 const RoutineComponent: React.FC = () => {
   const [routineData, setRoutineData] = useState<Routine[]>([]);
   const [newSet, setNewSet] = useState<Set>({ id: 0, weight: 0, reps: 0 });
-  const [setInputVisible, setSetInputVisible] = useState(false);
+  const [setInputVisible, setSetInputVisible] = useState(0);
+  const [showRemove, setShowRemove] = useState(0);
 
   useEffect(() => {
     const fetchRoutineData = async () => {
@@ -92,7 +94,7 @@ const RoutineComponent: React.FC = () => {
         return routine;
       });
       setTimeout(() => {
-        setSetInputVisible(false);
+        setSetInputVisible(0);
       }, 100);
       setRoutineData(updatedRoutineData);
     } catch (error) {
@@ -100,8 +102,8 @@ const RoutineComponent: React.FC = () => {
     }
   };
 
-  const toggleSetInputVisible = (visible: any) => {
-    setSetInputVisible(visible);
+  const toggleSetInputVisible = (id: number) => {
+    setSetInputVisible(id);
   };
 
   const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,130 +117,74 @@ const RoutineComponent: React.FC = () => {
   };
 
   return (
-    <div className="z-10">
-      {routineData.map((routine) => (
-        <div
-          key={routine.id}
-          className="mb-4 rounded-lg border border-gray-200 p-4"
-        >
-          <h2 className="text-xl font-bold">Routine ID: {routine.id}</h2>
-          {routine.routineExercises.map((exercise) => (
-            <div
-              key={exercise.id}
-              className="mt-4 rounded-lg border border-gray-200 p-4"
-            >
-              <h3 className="text-lg font-semibold">
-                Exercise ID: {exercise.id}
-              </h3>
-              <p className="font-semibold">
-                Exercise Name: {exercise.exercise.name}
-              </p>
-              <div className="mt-2">
-                <Image
-                  src={exercise.exercise.gifUrl}
-                  alt={exercise.exercise.name}
-                  className="h-32 w-32 rounded-lg object-cover"
-                  height={400}
-                  width={400}
-                />
-              </div>
-              {exercise.logs.length > 0 ? (
-                <ul className="mt-4 flex flex-wrap space-x-4">
-                  {exercise.logs.map((log) => (
-                    <li key={log.id} className="mt-2 flex">
-                      <p>Date: {log.date}</p>
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          handleAddSet(
-                            routine.id,
-                            exercise.id,
-                            log.id,
-                            newSet.weight,
-                            newSet.reps,
-                          );
-                        }}
-                        className="ml-4"
-                      >
-                        <button
-                          type="submit"
-                          className="rounded-md bg-white p-3"
-                        >
-                          Add Set
-                        </button>
-                        {log.sets.length > 0 ? (
-                          <ul className="mt-2 flex space-x-2">
-                            {log.sets.map((set) => (
-                              <li key={set.id} className="mt-2">
-                                <p>Weight: {set.weight}lbs</p>
-                                <p>Reps: {set.reps}</p>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p>No sets yet</p>
-                        )}
-                        <div className="mt-4 flex space-x-2">
-                          <input
-                            type="number"
-                            placeholder="Weight"
-                            value={newSet.weight}
-                            onChange={handleWeightChange}
-                          />
-                          <input
-                            type="number"
-                            placeholder="Reps"
-                            value={newSet.reps}
-                            onChange={handleRepsChange}
-                          />
-                        </div>
-                      </form>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No logs available.</p>
-              )}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div className="z-10 text-neutral-100">
       <div>
         {routineData.map((routine) => (
-          <div key={routine.id}>
+          <div
+            key={routine.id}
+            className="grid w-full grid-cols-1 gap-3 px-3 md:grid-cols-2"
+          >
             {/* Render routine exercises */}
             {routine.routineExercises.map((exercise) => (
               <div
                 key={exercise.id}
-                className="flex items-center rounded-md bg-gray-200 p-4"
+                className="flex flex-col justify-start rounded-md border-[1px] border-accent-600 px-4 "
               >
-                <Image
-                  src={exercise.exercise.gifUrl}
-                  alt="Exercise"
-                  className="h-24 w-24 rounded-full"
-                  height={400}
-                  width={400}
-                />
-                <div className="ml-4">
-                  <h2 className="text-xl font-bold">
+                <div className="grid grid-cols-3">
+                  <h2 className="font-bolder col-span-2 text-2xl capitalize text-accent-600">
                     {exercise.exercise.name}
                   </h2>
-                  <p className="text-gray-600">{exercise.exercise.target}</p>
-                  <div className="mt-4 flex flex-row space-x-7">
-                    <div className="flex flex-col">
-                      <span className="text-gray-600">Sets</span>
-                      {exercise.logs.map((log) => (
-                        <ul key={log.id}>
-                          {log.sets.map((set) => (
-                            <li key={set.id}>
-                              <span className="text-2xl font-bold">
-                                {set.id}
-                              </span>
-                            </li>
-                          ))}
-                          <div className="flex items-center">
-                            {setInputVisible ? (
-                              <div className="flex items-center">
+                  <div className="flex items-center justify-end gap-6">
+                    {showRemove === exercise.id && (
+                      <>
+                        <button
+                          className="bg-accent-400 text-accent-600 px-2 rounded hover:opacity-80"
+                          onClick={() => alert(exercise.id)}
+                        >
+                          Remove Exercise
+                        </button>
+                        <button className="transition  hover:scale-125" onClick={() => setShowRemove(0)}>X</button>
+                      </>
+                    )}
+                    {showRemove === 0 && (
+                      <button
+                        className="flex justify-end transition  hover:scale-125"
+                        onClick={() => setShowRemove(exercise.id)}
+                      >
+                        ☰
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <p className="col-span-3 h-8 capitalize text-neutral-100">
+                  {exercise.exercise.target}
+                </p>
+                <div className="grid grid-cols-3 justify-items-center">
+                  <Image
+                    src={exercise.exercise.gifUrl}
+                    alt="Exercise"
+                    className="col-span-1 m-auto w-[95%] rounded-xl pb-2"
+                    height={400}
+                    width={400}
+                  />
+                  <div className="col-span-2 w-full px-2">
+                    <div className="flex flex-row justify-around">
+                      <div className="flex flex-col">
+                        <span className="border-b-2 text-md text-neutral-100 md:text-xl">
+                          Sets
+                        </span>
+                        {exercise.logs.map((log) => (
+                          <ul key={log.id}>
+                            {log.sets.map((set, index) => (
+                              <li key={set.id}>
+                                <span className="block text-center font-semibold md:text-lg">
+                                  {index + 1}
+                                </span>
+                              </li>
+                            ))}
+                            <div className="flex items-center justify-center pb-3">
+                              {setInputVisible === exercise.id ? (
                                 <button
                                   type="button"
                                   onClick={() =>
@@ -250,71 +196,99 @@ const RoutineComponent: React.FC = () => {
                                       newSet.reps,
                                     )
                                   }
-                                  className="ml-2 mt-3 h-6 w-6 rounded-full bg-green-500 text-white"
+                                  className="font-bolder mt-3 h-6 w-6 rounded-full bg-accent-500 text-white"
+                                >
+                                  ✓
+                                </button>
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    toggleSetInputVisible(exercise.id)
+                                  }
+                                  className="font-bolder mt-3 h-6 w-6 rounded-full bg-green-500 text-white"
                                 >
                                   +
                                 </button>
-                              </div>
-                            ) : (
-                              <button
-                                type="button"
-                                onClick={() => toggleSetInputVisible(true)}
-                                className="ml-2 mt-3 h-6 w-6 rounded-full bg-green-500 text-white"
+                              )}
+                            </div>
+                          </ul>
+                        ))}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="border-b-2 text-md text-neutral-100 md:text-xl">
+                          Weight(lbs)
+                        </span>
+                        {exercise.logs.map((log) => (
+                          <ul key={log.id}>
+                            {log.sets.map((set) => (
+                              <li key={set.id}>
+                                <span className="block text-center font-semibold md:text-lg">
+                                  {set.weight}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        ))}
+                        {setInputVisible === exercise.id && (
+                          <input
+                            type="number"
+                            placeholder="00"
+                            value={newSet.weight}
+                            min={1}
+                            onChange={handleWeightChange}
+                            className="mx-auto mt-2 w-[70px] appearance-none rounded border px-3 py-1 text-gray-700 placeholder-gray-400 focus:ring"
+                          />
+                        )}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="border-b-2 text-md text-neutral-100 md:text-xl">
+                          Reps
+                        </span>
+                        {exercise.logs.map((log) => (
+                          <ul key={log.id}>
+                            {log.sets.map((set) => (
+                              <li key={set.id}>
+                                <span className="block text-center font-semibold md:text-lg">
+                                  {set.reps}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        ))}
+                        {setInputVisible === exercise.id && (
+                          <input
+                            type="number"
+                            placeholder="00"
+                            min={1}
+                            value={newSet.reps}
+                            onChange={handleRepsChange}
+                            className="mx-auto mt-2  w-[70px] appearance-none rounded border px-3 py-1 text-gray-700 placeholder-gray-400 focus:ring"
+                          />
+                        )}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="block text-md text-neutral-100 md:text-xl">
+                          <br />
+                        </span>
+                        {exercise.logs.map((log) => (
+                          <ul key={log.id}>
+                            {log.sets.map((set) => (
+                              <li
+                                key={set.id}
+                                className="flex h-[25px] w-[25px] md:h-[30px] md:w-[30px]"
                               >
-                                +
-                              </button>
-                            )}
-                          </div>
-                        </ul>
-                      ))}
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-gray-600">Weight(lbs)</span>
-                      {exercise.logs.map((log) => (
-                        <ul key={log.id}>
-                          {log.sets.map((set) => (
-                            <li key={set.id}>
-                              <span className="text-2xl font-bold">
-                                {set.weight}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
-                      {setInputVisible && (
-                        <input
-                          type="number"
-                          placeholder="00"
-                          value={newSet.weight}
-                          min={1}
-                          onChange={handleWeightChange}
-                          className="mt-2 w-[60px] appearance-none rounded border px-3 py-2 text-gray-700 placeholder-gray-400 focus:ring"
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-gray-600">Reps</span>
-                      {exercise.logs.map((log) => (
-                        <ul key={log.id}>
-                          {log.sets.map((set) => (
-                            <li key={set.id}>
-                              <span className="text-2xl font-bold">
-                                {set.reps}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
-                      {setInputVisible && (
-                        <input
-                          type="number"
-                          placeholder="00"
-                          min={1}
-                          value={newSet.reps}
-                          onChange={handleRepsChange}
-                          className="mt-2 w-[60px] appearance-none rounded border px-3 py-2 text-gray-700 placeholder-gray-400 focus:ring"
-                        />
-                      )}
+                                <button
+                                  className="w-[100%] rounded-full  hover:bg-neutral-100 "
+                                  onClick={() => alert(set.id)}
+                                >
+                                  <Trash className="m-auto w-[20px] p-[1px] md:w-[25px]" />
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
