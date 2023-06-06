@@ -6,6 +6,7 @@ import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import React from "react";
+import ToasterProvider from "./providers/ToasterProvider";
 
 export const metadata = {
   title: "Fitnnes",
@@ -29,11 +30,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
         <div className="fixed h-screen w-full from-indigo-50 via-white to-cyan-100" />
+        <ToasterProvider />
         <Suspense fallback="...">
           {/* @ts-expect-error Server Component */}
           <Nav />
         </Suspense>
-        <main className="flex bg-primary-400 min-h-screen w-full flex-col items-center py-16">
+        <main className="flex min-h-screen w-full flex-col items-center bg-primary-400 py-16">
           {children}
         </main>
         <Footer />
