@@ -50,7 +50,7 @@ export default function cardExercise({
           <p className="capitalize mb-1x text-lg font-bold text-accent-600 md:text-lg">
             {title}
           </p>
-          <span className="font-thin text-neutral-100">{description}</span>
+          <span className="capitalize font-thin text-neutral-100">{description}</span>
         </div>
       </Link>
       <button 
