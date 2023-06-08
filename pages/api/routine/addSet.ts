@@ -11,7 +11,6 @@ export default async function handler(
     const { routineId, exerciseId, logId, weight, reps } = req.body;
 
     try {
-      // Find the routine, exercise, and log based on the provided IDs
       const routine = await prisma.routine.findUnique({
         where: { id: routineId },
         include: {
@@ -19,7 +18,9 @@ export default async function handler(
             where: { id: exerciseId },
             include: {
               logs: {
-                where: { id: logId },
+                include: {
+                  sets: true,
+                },
               },
             },
           },
@@ -36,28 +37,29 @@ export default async function handler(
         return res.status(404).json({ error: "Exercise not found" });
       }
 
-      const log = exercise.logs[0];
+      const log = exercise.logs.find((log) => log.id === logId);
 
       if (!log) {
         return res.status(404).json({ error: "Log not found" });
       }
 
-      // Create the new set
+      const setNumber = log.sets.length + 1; // Calculate the set number
+
+      // Create the new set with the set number
       const newSet = await prisma.set.create({
         data: {
           weight,
           reps,
+          setNumber,
           log: { connect: { id: log.id } },
         },
       });
 
-      return res
-        .status(200)
-        .json({
-          success: true,
-          message: "Set added successfully",
-          set: newSet,
-        });
+      return res.status(200).json({
+        success: true,
+        message: "Set added successfully",
+        set: newSet,
+      });
     } catch (error) {
       console.error(error);
       return res

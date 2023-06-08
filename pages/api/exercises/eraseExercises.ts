@@ -13,7 +13,6 @@ export default async function handler(
   try {
     await prisma.routineExercise.deleteMany();
 
-    // Delete the records in the Exercise table
     const deleteManyResult = await prisma.exercise.deleteMany();
 
     res.status(200).json({ message: "Records deleted successfully" });

@@ -23,6 +23,7 @@ interface Set {
   id: number;
   weight: number;
   reps: number;
+  setNumber: number;
 }
 
 interface Routine {
@@ -36,7 +37,7 @@ interface Routine {
 
 const RoutineComponent: React.FC = () => {
   const [routineData, setRoutineData] = useState<Routine[]>([]);
-  const [newSet, setNewSet] = useState<Set>({ id: 0, weight: 0, reps: 0 });
+  const [newSet, setNewSet] = useState<Set>({ id: 0, weight: 0, reps: 0, setNumber:0 });
   const [setInputVisible, setSetInputVisible] = useState(0);
   const [showRemove, setShowRemove] = useState(0);
 

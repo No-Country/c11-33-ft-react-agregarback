@@ -1,3 +1,4 @@
+
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
@@ -91,6 +92,7 @@ model Log {
 model Set {
   id        Int @id @default(autoincrement())
   weight    Int
+  setNumber Int
   reps      Int
   logId     Int
   log       Log @relation(fields: [logId], references: [id])
