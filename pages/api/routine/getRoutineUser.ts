@@ -11,7 +11,10 @@ export default async function handler(
 
   if (req.method === "GET") {
     try {
-      const userId = "clijcafbt00009168o8f9b52a";
+      if (!session || !session.user || !session.user.id) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      const userId = session.user.id;
       const routine = await prisma.routine.findMany({
         where: {
           userId,
