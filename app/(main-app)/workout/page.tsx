@@ -10,20 +10,35 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <div className="z-10 flex min-h-screen w-full flex-col items-center justify-center py-32">
+    <div className="z-10 flex min-h-screen w-full flex-col items-center justify-center pt-2">
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <h1
           className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm md:text-7xl md:leading-[5rem]"
           style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
         >
-          <Balancer>Workout</Balancer>
+          <Balancer className="text-accent-600">Workout</Balancer>
         </h1>
+        <Image
+          className="mx-auto mt-2 w-full max-w-[180px] rounded md:col-start-1 md:row-start-1"
+          src="/assets/hero.png"
+          alt="hero-image"
+          width={300}
+          height={300}
+        />
         <div className="flex items-center justify-center">
           <Link
             href={"/exercises"}
-            className="boder-2 mt-3 justify-center rounded-3xl border-black bg-black px-5 py-2 text-center text-xs text-white duration-300 hover:border-green-600 hover:bg-gray-700 hover:text-green-300 lg:text-base"
+            className="boder-2 font-bolder mt-3 justify-center rounded-3xl border-black bg-accent-600 px-5 py-2 text-center text-xs text-primary-500 duration-300 hover:border-green-600 hover:bg-gray-700 hover:text-green-300 lg:text-base"
           >
             START AN EMPTY WORKOUT
+          </Link>
+        </div>
+        <div className="flex items-center justify-center">
+          <Link
+            href={"/workout/item-workout"}
+            className="boder-2 font-bolder mt-3 justify-center rounded-3xl border-black bg-accent-500 px-5 py-2 text-center text-xs text-neutral-100 duration-300 hover:border-green-600 hover:bg-gray-700 hover:text-green-300 lg:text-base"
+          >
+            WORKOUT IN CURSE
           </Link>
         </div>
         <div className="mt-9 grid grid-cols-1 gap-9 sm:gap-0 2xl:grid-cols-3">
