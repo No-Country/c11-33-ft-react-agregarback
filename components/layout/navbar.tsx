@@ -7,8 +7,9 @@ import UserDropdown from "./user-dropdown";
 import { Session } from "next-auth";
 import BarbellSVG from "../shared/icons/barbell";
 import { LogOut, User, History } from "lucide-react";
-
 import { signOut } from "next-auth/react";
+
+import img from "public/icons/workout.svg";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -56,7 +57,8 @@ export default function NavBar({ session }: { session: Session | null }) {
                       <span className="m-auto  font-semibold ">Workout</span>
                       <Image
                         alt="workout img"
-                        src="icons/workout.svg"
+                        priority
+                        src={img}
                         width={20}
                         height={20}
                         className="my-auto"

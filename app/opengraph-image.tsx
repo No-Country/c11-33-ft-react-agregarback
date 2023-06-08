@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/server";
-import React from "react"
+import React from "react";
 
 export const runtime = "edge";
-export const alt = "Precedent - Building blocks for your Next.js project";
+export const alt = "FitTrackr - It is a fitness application";
 export const contentType = "image/png";
 
 export default async function OG() {
@@ -27,9 +27,12 @@ export default async function OG() {
         }}
       >
         <img
-          src={new URL("../public/logo.png", import.meta.url).toString()}
-          alt="Precedent Logo"
-          className="w-20 h-20 mb-4 opacity-95"
+          src={new URL(
+            "../public/favicon/favicon-16x16.png",
+            import.meta.url,
+          ).toString()}
+          alt="FitTrackr Logo"
+          className="mb-4 h-20 w-20 opacity-95"
         />
         <h1
           style={{
@@ -43,7 +46,7 @@ export default async function OG() {
             letterSpacing: "-0.02em",
           }}
         >
-          Precedent
+          FitTrackr
         </h1>
       </div>
     ),

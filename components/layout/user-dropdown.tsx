@@ -8,6 +8,9 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import Link from "next/link";
 
+import img1 from "public/icons/workout.svg";
+import img2 from "public/icons/exercises.svg";
+
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
   const [openPopover, setOpenPopover] = useState(false);
@@ -37,24 +40,14 @@ export default function UserDropdown({ session }: { session: Session }) {
               href={"/workout"}
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
             >
-              <Image
-                alt="workout img"
-                src="icons/workout.svg"
-                width={18}
-                height={18}
-              />
+              <Image alt="workout img" src={img1} width={18} height={18} />
               <p className="text-sm">Workout</p>
             </Link>
             <Link
               href={"/exercises"}
               className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
             >
-              <Image
-                alt="exercises img"
-                src="icons/exercises.svg"
-                width={19}
-                height={19}
-              />
+              <Image alt="exercises img" src={img2} width={19} height={19} />
               <p className="text-sm">Exercises</p>
             </Link>
             <button
