@@ -83,16 +83,18 @@ model Log {
   id                Int             @id @default(autoincrement())
   date              DateTime
   routineExerciseId Int
+  createdAt         DateTime        @default(now()) @db.Timestamptz(3)
   routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
   sets              Set[]
 }
 
 model Set {
-  id     Int @id @default(autoincrement())
-  weight Int
-  reps   Int
-  logId  Int
-  log    Log @relation(fields: [logId], references: [id])
+  id        Int @id @default(autoincrement())
+  weight    Int
+  setNumber Int
+  reps      Int
+  logId     Int
+  log       Log @relation(fields: [logId], references: [id])
 }
 
 model MaxLog {
