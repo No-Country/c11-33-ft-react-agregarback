@@ -52,6 +52,9 @@ module.exports = {
         "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
       },
+      listStyleImage: {
+        checkmark: 'url("/checkmark.svg")',
+      },
       keyframes: {
         // Fade up and down
         "fade-up": {

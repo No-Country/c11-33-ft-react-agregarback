@@ -3,13 +3,11 @@ import React, { useState } from "react";
 
 interface FormValues {
   email: string;
-  password: string;
 }
 
 const RegisterForm = () => {
   const [formValues, setFormValues] = useState<FormValues>({
     email: "",
-    password: "",
   });
   const [errors, setErrors] = useState<{
     email?: string;
@@ -27,16 +25,12 @@ const RegisterForm = () => {
   const validate = () => {
     const errors: {
       email?: string;
-      password?: string;
     } = {};
 
     if (!formValues.email) {
       errors.email = "Email is required";
     }
 
-    if (!formValues.password) {
-      errors.password = "Password is required";
-    }
     return Object.keys(errors).length > 0 ? errors : null;
   };
 
@@ -45,12 +39,10 @@ const RegisterForm = () => {
     const errs = validate();
     if (errs) {
       setErrors(errs);
+    } else {
+      const { email } = formValues;
+      signIn("email", { email });
     }
-    else {
-      const {email,password} = formValues
-      signIn('email', { email, password })
-    }
-    
   };
 
   return (
@@ -69,24 +61,9 @@ const RegisterForm = () => {
         onChange={handleChange}
         type="email"
         placeholder="Email"
-        className="mb-4 rounded-md border-2 border-gray-300 px-4 py-2"
-      />
-      {errors.password && <p className="text-red-500">{errors.password}</p>}
-        <label
-          className={`font-variant font-semibold`}
-          htmlFor="password"
-        >
-          Password
-        </label>
-      <input
-        id="password"
-        name="password"
-        value={formValues.password}
-        onChange={handleChange}
-        type="password"
-        placeholder="Password"
         className="rounded-md border-2 border-gray-300 px-4 py-2"
       />
+      {errors.password && <p className="text-red-500">{errors.password}</p>}
 
       <button className="mt-4 rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
         Continue
