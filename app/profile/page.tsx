@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const routinesNumber = () => {
+const routinesNumber = async () => {
   return fetch("http://localhost:3000/api/routine/getRoutinesNumber", {
     next: {
       revalidate: 60,
