@@ -11,7 +11,7 @@ export default async function Home() {
           <div className="container gap-8 px-4 md:grid md:grid-cols-2 md:items-center">
             <div>
               <h1 className="text-3xl font-semibold text-accent-600 md:text-5xl">
-                FitTrackr Your Ultimate Workout Logger
+                FitTrackr <span className="type-slogan"></span>
               </h1>
               <p className="text-base leading-8 text-neutral-400 md:text-xl">
                 Track your fitness journey with ease. FitTrackr is the ultimate
