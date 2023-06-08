@@ -28,7 +28,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(sfPro.variable, inter.variable)}>
+      <body className={cx(sfPro.variable, inter.variable, "bg-primary-400")}>
         <div className="fixed h-screen w-full from-indigo-50 via-white to-cyan-100" />
         <ToasterProvider />
         <Suspense fallback="...">
