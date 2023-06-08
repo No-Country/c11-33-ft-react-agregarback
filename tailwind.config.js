@@ -98,6 +98,35 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    require("tailwind-scrollbar")({ nocompatible: true }),
+    require("tailwind-typewriter")({
+      wordsets: {
+        slogan: {
+          words: [
+            "Your Ultimate Workout Logger",
+            "Stronger every day.",
+            "Unleash your potential.",
+            "Build a better you.",
+            "Train insane or remain the same.",
+            "Sweat now, shine later.",
+            "Fitness is not a destination, it’s a journey.",
+            "No pain, no gain.",
+            "Your only limit is you.",
+            "Push yourself to new limits.",
+            "The only bad workout is the one that didn't happen.",
+            "Train like a beast, look like a beauty.",
+            "The body achieves what the mind believes.",
+            "Fitness is the best medicine.",
+            "Get fit or go home.",
+            "Be stronger than your strongest excuse.",
+          ],
+          delay: 3,
+          writeSpeed: 0.2,
+          pauseBetween: 5,
+          blinkSpeed: 3,
+        },
+      },
+    }),
     plugin(({ addVariant }) => {
       addVariant("radix-side-top", '&[data-side="top"]');
       addVariant("radix-side-bottom", '&[data-side="bottom"]');

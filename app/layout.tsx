@@ -25,7 +25,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      className="scrollbar scrollbar-track-gray-100 scrollbar-thumb-primary-400"
+      lang="en"
+    >
       <body className={cx(sfPro.variable, inter.variable, "bg-primary-400")}>
         <div className="fixed h-screen w-full from-indigo-50 via-white to-cyan-100" />
         <ToasterProvider />

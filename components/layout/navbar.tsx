@@ -71,12 +71,7 @@ export default function NavBar({ session }: { session: Session | null }) {
                       <BarbellSVG width={20} height={20} className="my-auto" />
                     </li>
                   </Link>
-                  <Link href={"/history"}>
-                    <li className="hover:font-bolder flex h-[23px] flex-row flex-wrap content-center justify-center gap-2 text-accent-600 transition-all hover:rounded hover:p-3 hover:text-neutral-100">
-                      <span className="m-auto  font-semibold ">History</span>
-                      <History className="my-auto h-[20px] w-[20px]" />
-                    </li>
-                  </Link>
+
                   <li
                     onClick={() => signOut()}
                     className="hover:font-bolder flex h-[23px] cursor-pointer flex-row flex-wrap content-center justify-center gap-2 text-accent-600 transition-all hover:rounded hover:p-3 hover:text-neutral-100"
