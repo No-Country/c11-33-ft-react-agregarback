@@ -83,6 +83,7 @@ model Log {
   id                Int             @id @default(autoincrement())
   date              DateTime
   routineExerciseId Int
+  createdAt         DateTime        @default(now()) @db.Timestamptz(3)
   routineExercise   RoutineExercise @relation(fields: [routineExerciseId], references: [id])
   sets              Set[]
 }
