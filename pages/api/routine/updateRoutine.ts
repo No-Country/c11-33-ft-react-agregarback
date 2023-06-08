@@ -13,7 +13,6 @@ export default async function handler(
     try {
       const { routineId, logId, sets } = req.body;
 
-      // Check if routine with the given ID exists
       const routine = await prisma.routine.findUnique({
         where: { id: routineId },
       });
@@ -22,7 +21,6 @@ export default async function handler(
         return res.status(404).json({ error: "Routine not found" });
       }
 
-      // Find the log within the routine
       const log = await prisma.log.findUnique({
         where: { id: logId },
         include: { routineExercise: true },
@@ -32,13 +30,13 @@ export default async function handler(
         return res.status(404).json({ error: "Log not found" });
       }
 
-      // Create sets and associate them with the log
       const createdSets = await Promise.all(
         sets.map(async (set: any) => {
           const createdSet = await prisma.set.create({
             data: {
               weight: set.weight,
               reps: set.reps,
+              setNumber: set.setNumber,
               log: { connect: { id: logId } },
             },
           });

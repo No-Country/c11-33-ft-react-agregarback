@@ -1,21 +1,137 @@
-const cardHistory = () => {
+"use client";
+import { useState, useEffect } from "react";
+
+interface ExerciseHistory {
+  routineId: number;
+  exerciseName: string;
+  logs: {
+    logId: number;
+    date: string;
+    sets: {
+      id: number;
+      weight: number;
+      reps: number;
+    }[];
+  }[];
+}
+
+const CardHistory = () => {
+  const [exerciseHistory, setExerciseHistory] = useState<ExerciseHistory[]>([]);
+
+  useEffect(() => {
+    const fetchExerciseHistory = async () => {
+      try {
+        const response = await fetch(
+          "/api/routine/getUserHistory?exerciseId=11",
+        );
+        const data = await response.json();
+        console.log(data.exerciseHistory);
+        setExerciseHistory(data.exerciseHistory);
+      } catch (error) {
+        console.error("Error fetching exercise history:", error);
+      }
+    };
+    fetchExerciseHistory();
+  }, []);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const month = date.toLocaleString("default", { month: "long" });
+    const day = date.getDate();
+    const dayOfWeek = date.toLocaleString("default", { weekday: "long" });
+    const time = date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    return { month, day, dayOfWeek, time };
+  };
+
+  const groupLogsByDay = (
+    logs: {
+      logId: number;
+      date: string;
+      sets: { id: number; weight: number; reps: number }[];
+    }[],
+  ) => {
+    const groupedLogs: {
+      [key: string]: {
+        date: string;
+        logs: {
+          logId: number;
+          date: string;
+          sets: { id: number; weight: number; reps: number }[];
+        }[];
+      };
+    } = {};
+
+    for (const log of logs) {
+      const { month, day, dayOfWeek } = formatDate(log.date);
+      const key = `${dayOfWeek}, ${month} ${day}`;
+
+      if (groupedLogs[key]) {
+        groupedLogs[key].logs.push(log);
+      } else {
+        groupedLogs[key] = {
+          date: key,
+          logs: [log],
+        };
+      }
+    }
+
+    return Object.values(groupedLogs);
+  };
+
   return (
-    <div className="m-auto max-w-[330px] rounded-md border-[1px] border-neutral-100 p-3 md:w-[400px]">
-      <div className="mb-[10px] flex flex-col gap-1">
-        <p className="text-xl font-bold text-accent-600">Morning Workout</p>
-        <span className="text-neutral-100">Tuesday,May 16, 2023, 10:00 AM</span>
-      </div>
-      <div>
-        <p className="text-xl font-bold text-accent-600 mb-2">Sets perfomed</p>
-        <ul className="text-neutral-100">
-          <li >1 (+5lbs) x 20</li>
-          <li >2 (+5lbs) x 20</li>
-          <li >3 (+5lbs) x 20</li>
-          <li >4 (+5lbs) x 20</li>
-        </ul>
+    <div>
+      <h2 className="text-xl font-semibold">Exercise History</h2>
+      <div className="flex flex-wrap">
+        {exerciseHistory.map((exercise) => (
+          <div key={exercise.routineId} className="w-[375px]">
+            {groupLogsByDay(exercise.logs).map((group) => (
+              <div key={group.date} className="mt-4">
+                {group.logs.map((log) => (
+                  <div key={log.logId}>
+                    {log.sets.length > 0 && (
+                      <>
+                        <div className="rounded-lg p-4 shadow-md">
+                          <h4
+                            className="mb-2
+text-lg font-semibold text-[#E6D5B8]"
+                          >
+                            {group.date}
+                          </h4>
+                          <h4
+                            className="mb-2
+text-lg font-semibold text-[#ffffff]"
+                          >
+                            {exercise.exerciseName}
+                          </h4>
+                          <ul>
+                            <h5
+                              className="mb-2
+text-lg font-semibold text-[#E6D5B8]"
+                            >
+                              Sets Performed
+                            </h5>
+                            {log.sets.map((set) => (
+                              <li key={set.id}>
+                                Weight: {set.weight}, Reps: {set.reps}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default cardHistory;
+export default CardHistory;
