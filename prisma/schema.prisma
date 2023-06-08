@@ -76,7 +76,7 @@ model RoutineExercise {
   logs       Log[]
   maxLog     MaxLog?
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
-  routine    Routine  @relation(fields: [routineId], references: [id])
+  routine    Routine  @relation(fields: [routineId], references: [id], onDelete: Cascade)
 }
 
 model Log {
