@@ -1,13 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Card from "@/components/home/card";
-import CreateRoutineForm from "@/components/test/FormRoutine";
-import CardHistory from "@/components/exercises/history/cardHistory";
 
 export default async function Home() {
   return (
     <main className="z-10 bg-primary-400">
- <section className="hero">
+     <section className="hero">
         <div className="container gap-8 px-4 md:grid md:grid-cols-2 md:items-center">
           <div>
             <h1 className="text-3xl font-semibold text-accent-600 md:text-5xl">
