@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Trash from "../../../components/shared/icons/Trash";
+import { toast } from "react-hot-toast";
 
 interface Exercise {
   id: number;
@@ -138,12 +139,17 @@ const RoutineComponent: React.FC = () => {
                     {showRemove === exercise.id && (
                       <>
                         <button
-                          className="bg-accent-400 text-accent-600 px-2 rounded hover:opacity-80"
+                          className="rounded bg-accent-400 px-2 text-accent-600 hover:opacity-80"
                           onClick={() => alert(exercise.id)}
                         >
                           Remove Exercise
                         </button>
-                        <button className="transition  hover:scale-125" onClick={() => setShowRemove(0)}>X</button>
+                        <button
+                          className="transition  hover:scale-125"
+                          onClick={() => setShowRemove(0)}
+                        >
+                          X
+                        </button>
                       </>
                     )}
                     {showRemove === 0 && (
@@ -187,15 +193,16 @@ const RoutineComponent: React.FC = () => {
                               {setInputVisible === exercise.id ? (
                                 <button
                                   type="button"
-                                  onClick={() =>
+                                  onClick={() => {
                                     handleAddSet(
                                       routine.id,
                                       exercise.id,
                                       log.id,
                                       newSet.weight,
                                       newSet.reps,
-                                    )
-                                  }
+                                    );
+                                    toast.success("Log successfully created");
+                                  }}
                                   className="font-bolder mt-3 h-6 w-6 rounded-full bg-accent-500 text-white"
                                 >
                                   ✓

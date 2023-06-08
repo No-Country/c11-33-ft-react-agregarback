@@ -91,7 +91,6 @@ model Log {
 model Set {
   id        Int @id @default(autoincrement())
   weight    Int
-  setNumber Int
   reps      Int
   logId     Int
   log       Log @relation(fields: [logId], references: [id])
