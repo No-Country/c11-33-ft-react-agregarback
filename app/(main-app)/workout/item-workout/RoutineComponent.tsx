@@ -104,6 +104,74 @@ const RoutineComponent: React.FC = () => {
     }
   };
 
+  const handleDeleteSet = async (
+    routineId: number,
+    exerciseId: number,
+    logId: number,
+    setId: number
+  ) => {
+    try {
+      const response = await axios.delete(
+        `/api/routine/deleteSet?setId=${setId}`
+      );
+      console.log(response.data);
+  
+      const updatedRoutineData = routineData.map((routine) => {
+        if (routine.id === routineId) {
+          const updatedRoutineExercises = routine.routineExercises.map(
+            (exercise) => {
+              if (exercise.id === exerciseId) {
+                const updatedLogs = exercise.logs.map((log) => {
+                  if (log.id === logId) {
+                    const updatedSets = log.sets.filter(
+                      (set) => set.id !== setId
+                    );
+                    return { ...log, sets: updatedSets };
+                  }
+                  return log;
+                });
+                return { ...exercise, logs: updatedLogs };
+              }
+              return exercise;
+            }
+          );
+          return { ...routine, routineExercises: updatedRoutineExercises };
+        }
+        return routine;
+      });
+      console.log("deleteadisima")
+      setRoutineData(updatedRoutineData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // const handleDeleteExercise = async (
+  //   routineId: number,
+  //   exerciseId: number
+  // ): Promise<void> => {
+  //   try {
+  //     const response = await axios.delete<{ success: boolean }>(
+  //       `/api/routine/deleteRoutineExercise?routineId=${routineId}&exerciseId=${exerciseId}`
+  //     );
+  //     console.log(response.data);
+  
+  //     const updatedRoutineData = routineData.map((routine) => {
+  //       if (routine.id === routineId) {
+  //         const updatedRoutineExercises = routine.routineExercises.filter(
+  //           (exercise) => exercise.id !== exerciseId
+  //         );
+  //         return { ...routine, routineExercises: updatedRoutineExercises };
+  //       }
+  //       return routine;
+  //     });
+
+  //     setRoutineData(updatedRoutineData);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const toggleSetInputVisible = (id: number) => {
     setSetInputVisible(id);
   };
@@ -126,7 +194,6 @@ const RoutineComponent: React.FC = () => {
             key={routine.id}
             className="grid w-full grid-cols-1 gap-3 px-3 md:grid-cols-2"
           >
-            {/* Render routine exercises */}
             {routine.routineExercises.map((exercise) => (
               <div
                 key={exercise.id}
@@ -183,10 +250,10 @@ const RoutineComponent: React.FC = () => {
                         </span>
                         {exercise.logs.map((log) => (
                           <ul key={log.id}>
-                            {log.sets.map((set, index) => (
+                            {log.sets.map((set) => (
                               <li key={set.id}>
                                 <span className="block text-center font-semibold md:text-lg">
-                                  {index + 1}
+                                {set.setNumber}
                                 </span>
                               </li>
                             ))}
@@ -288,7 +355,7 @@ const RoutineComponent: React.FC = () => {
                               >
                                 <button
                                   className="w-[100%] rounded-full  hover:bg-neutral-100 "
-                                  onClick={() => alert(set.id)}
+                                  onClick={() => handleDeleteSet(routine.id, exercise.id, log.id, set.id)}
                                 >
                                   <Trash className="m-auto w-[20px] p-[1px] md:w-[25px]" />
                                 </button>

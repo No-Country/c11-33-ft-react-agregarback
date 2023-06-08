@@ -55,8 +55,9 @@ model Routine {
   userId           String
   createdAt        DateTime          @default(now()) @db.Timestamptz(3)
   user             User              @relation(fields: [userId], references: [id])
-  routineExercises RoutineExercise[]
+  routineExercises RoutineExercise[] 
 }
+
 
 model Exercise {
   id               Int               @id @default(autoincrement())
@@ -72,11 +73,11 @@ model Exercise {
 model RoutineExercise {
   id         Int      @id @default(autoincrement())
   routineId  Int
-  exerciseId Int
+  exerciseId Int 
   logs       Log[]
   maxLog     MaxLog?
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
-  routine    Routine  @relation(fields: [routineId], references: [id])
+  routine    Routine  @relation(fields: [routineId], references: [id], onDelete: Cascade)
 }
 
 model Log {

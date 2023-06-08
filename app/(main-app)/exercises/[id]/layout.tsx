@@ -24,21 +24,23 @@ export default function LayoutExercises({
       <section className="flex min-h-screen w-full flex-col items-center justify-center py-5 md:hidden">
         {children}
       </section>
-      <section className="hidden md:grid gap-20 md:px-28 mb-20">
-
+      <section className="mb-20 hidden gap-20 md:grid md:px-28">
         <article>
           <h4 className="text-2xl font-semibold text-accent-600">ABOUT</h4>
           <About params={params} />
         </article>
 
         <article>
-          <h4 className="text-2xl font-semibold text-accent-600 mb-10">HISTORY</h4>
-          <History />
+          <h4 className="mb-10 text-2xl font-semibold text-accent-600">
+            HISTORY
+          </h4>
+          <History params={params} />
         </article>
-
         <article>
-          <h4 className="text-2xl font-semibold text-accent-600 mb-10">RECORDS</h4>
-          <Records />
+          <h4 className="mb-10 text-2xl font-semibold text-accent-600">
+            RECORDS
+          </h4>
+          <Records params={params} />
         </article>
       </section>
     </div>
