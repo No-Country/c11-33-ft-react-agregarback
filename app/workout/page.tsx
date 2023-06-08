@@ -20,7 +20,7 @@ export default async function Home() {
         </h1>
         <div className="flex items-center justify-center">
           <Link
-            href={"/workout/item-workout"}
+            href={"/exercises"}
             className="boder-2 mt-3 justify-center rounded-3xl border-black bg-black px-5 py-2 text-center text-xs text-white duration-300 hover:border-green-600 hover:bg-gray-700 hover:text-green-300 lg:text-base"
           >
             START AN EMPTY WORKOUT

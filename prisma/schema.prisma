@@ -89,11 +89,11 @@ model Log {
 }
 
 model Set {
-  id     Int @id @default(autoincrement())
-  weight Int
-  reps   Int
-  logId  Int
-  log    Log @relation(fields: [logId], references: [id])
+  id        Int @id @default(autoincrement())
+  weight    Int
+  reps      Int
+  logId     Int
+  log       Log @relation(fields: [logId], references: [id])
 }
 
 model MaxLog {

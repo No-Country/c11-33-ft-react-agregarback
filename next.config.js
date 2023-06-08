@@ -8,6 +8,7 @@ const nextConfig = {
       "vercel.com",
       "d205bpvrqc9yn1.cloudfront.net",
       "ik.imagekit.io",
+      "edbv2-ff7foj6vca-uc.a.run.app",
     ],
   },
   async redirects() {
