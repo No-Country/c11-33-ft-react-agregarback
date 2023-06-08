@@ -41,7 +41,11 @@ export default async function Profile() {
             <p className="capitalize text-accent-600">
               {session && session.user.email.split("@")[0]}
             </p>
-            <span>{routines.data[routines.data.length - 1].id} workout</span>
+            {routines.data.length >= 1 ? (
+              <span>{routines.data[routines.data.length - 1].id} workout</span>
+            ) : (
+              <span>0 workout</span>
+            )}
           </div>
         </div>
         <div>
