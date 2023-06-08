@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import Trash from "../../../components/shared/icons/Trash";
+import Trash from "@/components/shared/icons/Trash";
 import { toast } from "react-hot-toast";
 
 interface Exercise {
