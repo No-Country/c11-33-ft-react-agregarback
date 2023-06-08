@@ -156,17 +156,22 @@ export default function ListExercises({ path }: { path: string }) {
           <button
             className={`mx-2 rounded bg-primary-500 p-2 text-neutral-100 ${
               use ? "bg-slate-300" : ""
-            }`}
+            } 
+            ${use ? "cursor-not-allowed" : ""}
+            transition-all
+            hover:scale-105
+            `}
             disabled={use}
             onClick={handleSearch}
           >
             Search
           </button>
           <button
-            className="mx-2 rounded  bg-accent-400 p-2 text-neutral-100"
+            className="mx-2 rounded  bg-accent-400 p-2 text-neutral-100 transition-all
+            hover:scale-105"
             onClick={handleReset}
           >
-            Reset
+            Clear
           </button>
         </div>
         {exercises.length > 0 ? (

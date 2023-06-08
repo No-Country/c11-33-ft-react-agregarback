@@ -1,16 +1,7 @@
-import Dashboard from "@/components/profile/dashboard";
+import ListDashboards from "@/components/profile/ListDashboards";
 import Image from "next/image";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
-const routinesNumber = async () => {
-  return fetch("http://localhost:3000/api/routine/getRoutinesNumber", {
-    next: {
-      revalidate: 60,
-    },
-  }).then((res) => res.json());
-};
-
 interface Session {
   user: {
     id: number;
@@ -22,8 +13,6 @@ interface Session {
 
 export default async function Profile() {
   const session: Session | null = await getServerSession(authOptions);
-  const routines = await routinesNumber();
-  console.log(routines);
   return (
     <div className="z-10 bg-primary-400 p-6 text-neutral-100">
       <div className="container  px-4">
@@ -41,25 +30,22 @@ export default async function Profile() {
             <p className="capitalize text-accent-600">
               {session && session.user.email.split("@")[0]}
             </p>
-            {routines.data.length >= 1 ? (
+            {/* {routines.data && routines.data.length >= 1 ? (
               <span>{routines.data[routines.data.length - 1].id} workout</span>
             ) : (
               <span>0 workout</span>
-            )}
+            )} */}
           </div>
         </div>
         <div>
           <h1 className="py-5 uppercase">Dashboard</h1>
           <div className=" flex w-full flex-col content-center gap-5 md:flex-row md:flex-wrap md:justify-start lg:justify-center">
-            <div className="flex w-full justify-center md:h-60 md:w-[450px] lg:w-[550px]">
-              <Dashboard />
-            </div>
-            <div className="flex w-full justify-center md:h-60 md:w-[450px]  lg:w-[550px]">
-              <Dashboard />
-            </div>
-            <div className="flex w-full justify-center md:h-60 md:w-[450px]  lg:w-[550px]">
-              <Dashboard />
-            </div>
+            {/* {routines.data && routines.data.length >= 1 ? (
+              <ListDashboards />
+            ) : (
+              <p>Don´t have any workout!</p>
+            )} */}
+            <ListDashboards />
           </div>
         </div>
       </div>
