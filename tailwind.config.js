@@ -120,8 +120,6 @@ module.exports = {
             "Get fit or go home.",
             "Be stronger than your strongest excuse.",
           ],
-          delay: 3,
-          pauseBetween: 5,
         },
       },
     }),
