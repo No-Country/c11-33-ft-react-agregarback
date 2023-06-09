@@ -4,7 +4,13 @@
 
 Achieve your fitness goals with our state-of-the-art web application. Powered by Next.js and Prisma, we offer you a personalized and effective online training experience.
 
+
 <p  align="center" ><a href="https://www.youtube.com/watch?v=sMroXW4a_1s" target="_blank" rel="noopener noreferrer"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></a></p>
+
+
+
+
+
 
 ## Features 🏃‍♀️📈
 - User registration and login 🙋‍♀️🔐
@@ -56,10 +62,17 @@ The app will run on [http://localhost:3000](http://localhost:3000/) 🚀
 
 ### 👉🏻 FullStack Developers
 
-| <img src="https://avatars.githubusercontent.com/u/54697159?v=4" width=70>| <img src="https://avatars.githubusercontent.com/u/87460125?v=4" width=70>| <img src="https://avatars.githubusercontent.com/u/92900908?v=4" width=70>| <img src="https://avatars.githubusercontent.com/u/14036522?v=4" width=70>| 
-|:-:|:-:|:-:|:-:|
-| **Juan Quiroz**| **Luciano Sanchez**| **Joel Gonzales** | **Samuel Llibre**  
-| <a href="https://github.com/JuanQuiro"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/dreyz/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/lucianojsanchez"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/lucianojsanchez/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Joe1797"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/joel-fabrizio-gonzales-diaz-6ab9ba123/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Zyruks"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/zyruks/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+| <img src="https://avatars.githubusercontent.com/u/54697159?v=4" width=70>| <img src="https://avatars.githubusercontent.com/u/87460125?v=4" width=70>| <img src="https://avatars.githubusercontent.com/u/92900908?v=4" width=70>|  
+|:-:|:-:|:-:|
+| **Juan Quiroz**| **Luciano Sanchez**| **Joel Gonzales**   
+| <a href="https://github.com/JuanQuiro"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/dreyz/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/lucianojsanchez"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/lucianojsanchez/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Joe1797"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/joel-fabrizio-gonzales-diaz-6ab9ba123/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
+
+### 👉🏻 Ui/ux Designer
+
+| <img src="https://avatars.githubusercontent.com/u/14036522?v=4" width=70>| 
+|:-:|
+| **Eduardo Rey** | 
+| <a href="https://github.com/Zyruks"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/zyruks/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
 
 ### 👉🏻 Team Leader
 
@@ -75,3 +88,7 @@ The app will run on [http://localhost:3000](http://localhost:3000/) 🚀
 ## Communication🙋‍♀️
 
 [![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=fff)](https://discord.gg/bMuAZZzH)
+
+## Design
+
+### <a href="https://www.figma.com/file/V9OPDO3qlYUxv9FxGXJp0C/WorkOut-logger?type=design&node-id=0-1&t=Somlzwku9NdYECWP-0"><img height="18px" src="https://img.icons8.com/color/344/figma--v1.png"/> Mockup</a>
