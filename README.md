@@ -2,7 +2,9 @@
 # FitTrackr 💪🏋️‍♀️🏋️‍♂️
 ![img fitness](https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81oV218iHBp07VqgmCwyjB6mVUXeWlH9itU63fspKlr-Lf21I6DBO9AHrsLUgTU23lNMopN1B0aZgYD74H3KFUgC8TcU=w1360-h663)
 
-This is a fitness web application created with Next.js and Prisma.
+Achieve your fitness goals with our state-of-the-art web application. Powered by Next.js and Prisma, we offer you a personalized and effective online training experience.
+
+<p  align="center" ><a href="https://www.youtube.com/watch?v=X5mUV5qxs3I" target="_blank" rel="noopener noreferrer"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></a></p>
 
 ## Features 🏃‍♀️📈
 - User registration and login 🙋‍♀️🔐
