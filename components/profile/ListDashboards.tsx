@@ -57,34 +57,35 @@ export default function ListDashboards() {
     fetchData();
   }, []);
 
-  console.log(dataDB);
-
   return (
-    <div className="flex w-full flex-wrap justify-center gap-4 md:h-60 md:w-[450px] md:flex-nowrap lg:w-[550px]">
+    <div className="flex w-full flex-wrap justify-center gap-4  md:h-60 ">
       {dataDB &&
-        dataDB.map((r: ResponseData,index) => {
-          let fecha = new Date(r.createdAt);
-          let formatoFecha = fecha.toLocaleDateString();
-          let title = "AVERAGE REPS WORKOUT - " + formatoFecha;
-          let labelsExercises = r.routineExercises.map(
-            (re: RoutineExercise) => re.exercise.name,
-          );
-          let promedioRep = r.routineExercises.map((re: RoutineExercise) => {
-            let suma = 0;
-            re.logs[0].sets.forEach((l) => {
-              suma = suma + l.reps;
+        dataDB.sort((a, b) => {
+            return a.id === b.id ? 0 : a.id > b.id ? -1 : 1;
+          })
+          .map((r: ResponseData, index) => {
+            let fecha = new Date(r.createdAt);
+            let formatoFecha = fecha.toLocaleDateString();
+            let title = "AVERAGE REPS WORKOUT - " + formatoFecha;
+            let labelsExercises = r.routineExercises.map(
+              (re: RoutineExercise) => re.exercise.name,
+            );
+            let promedioRep = r.routineExercises.map((re: RoutineExercise) => {
+              let suma = 0;
+              re.logs[0].sets.forEach((l) => {
+                suma = suma + l.reps;
+              });
+              return suma / re.logs[0].sets.length;
             });
-            return suma / re.logs[0].sets.length;
-          });
-          return (
-            <Dashboard
-              key={index}
-              title={title}
-              labelsets={labelsExercises}
-              datasets={promedioRep}
-            />
-          );
-        })}
+            return (
+              <Dashboard
+                key={index}
+                title={title}
+                labelsets={labelsExercises}
+                datasets={promedioRep}
+              />
+            );
+          })}
     </div>
   );
 }
