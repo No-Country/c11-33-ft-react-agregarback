@@ -67,7 +67,7 @@ The app will run on [http://localhost:3000](http://localhost:3000/) 🚀
 | **Juan Quiroz**| **Luciano Sanchez**| **Joel Gonzales**   
 | <a href="https://github.com/JuanQuiro"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/dreyz/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/lucianojsanchez"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/lucianojsanchez/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/Joe1797"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/joel-fabrizio-gonzales-diaz-6ab9ba123/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
 
-### 👉🏻 Ui/ux Designer
+### 👉🏻 Ui/Ux Designer
 
 | <img src="https://avatars.githubusercontent.com/u/14036522?v=4" width=70>| 
 |:-:|
