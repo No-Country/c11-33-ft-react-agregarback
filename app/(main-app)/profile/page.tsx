@@ -13,23 +13,23 @@ interface Session {
 
 export default async function Profile() {
   const session: Session | null = await getServerSession(authOptions);
+  console.log(session);
 
   return (
     <div className="z-10 h-auto w-full bg-primary-400 p-6 text-neutral-100">
       <div className="container  w-full px-4">
         <div className="flex w-full flex-row gap-3 py-3">
-          <div className="w-[50px] rounded-full border-2 border-gray-300">
-            <Image
-              src={
-                session?.user.image ||
-                `https://avatars.dicebear.com/api/micah/${session?.user.email}.svg`
-              }
-              alt="Image Profile"
-              width={120}
-              height={30}
-              unoptimized
-            />
-          </div>
+          <Image
+            className="w-12 rounded-full border-2 border-gray-300 object-cover duration-700 hover:scale-125 hover:bg-black"
+            src={
+              session?.user.image ||
+              `https://avatars.dicebear.com/api/micah/${session?.user.email}.svg`
+            }
+            alt="Image Profile"
+            width={50}
+            height={50}
+          />
+
           <div>
             <p className="capitalize text-accent-600">
               {session && session.user.email.split("@")[0]}
