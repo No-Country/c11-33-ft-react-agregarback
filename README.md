@@ -71,7 +71,7 @@ The app will run on [http://localhost:3000](http://localhost:3000/) 🚀
 
 | <img src="https://avatars.githubusercontent.com/u/14036522?v=4" width=70>| 
 |:-:|
-| **Eduardo Rey** | 
+| **Samuel Llibre** | 
 | <a href="https://github.com/Zyruks"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/zyruks/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
 
 ### 👉🏻 Team Leader
