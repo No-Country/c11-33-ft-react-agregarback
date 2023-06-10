@@ -23,7 +23,7 @@ const SignInModal = ({
 
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
-      <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
+      <div className="z-50 w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
         <div>
           <div className="grid grid-cols-2 gap-2 bg-gray-50 px-4 py-8 md:px-16">
             <h3 className=" col-span-2 text-left font-display text-2xl font-bold">

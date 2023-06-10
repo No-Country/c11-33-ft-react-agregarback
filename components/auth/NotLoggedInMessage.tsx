@@ -5,7 +5,7 @@ import img from "../../public/assets/no-auth.gif";
 
 const NotLoggedInMessage: React.FC = () => {
   return (
-    <div className="z-50 min-h-screen items-center justify-center rounded-lg border-gray-300 p-4">
+    <div className="z-10 min-h-screen items-center justify-center rounded-lg border-gray-300 p-4">
       <Image
         src={img}
         width={500}
