@@ -13,13 +13,17 @@ interface Session {
 
 export default async function Profile() {
   const session: Session | null = await getServerSession(authOptions);
+
   return (
     <div className="z-10 h-auto w-full bg-primary-400 p-6 text-neutral-100">
       <div className="container  w-full px-4">
         <div className="flex w-full flex-row gap-3 py-3">
-          <div className="w-[50px] rounded-full">
+          <div className="w-[50px] rounded-full border-2 border-gray-300">
             <Image
-              src="https://pixlok.com/wp-content/uploads/2022/02/Profile-Icon-SVG-09856789.png"
+              src={
+                session?.user.image ||
+                `https://avatars.dicebear.com/api/micah/${session?.user.email}.svg`
+              }
               alt="Image Profile"
               width={120}
               height={30}
@@ -37,7 +41,7 @@ export default async function Profile() {
             )} */}
           </div>
         </div>
-        <div className="w-full h-auto">
+        <div className="h-auto w-full">
           <h1 className="py-5 uppercase">Dashboard</h1>
           <div className=" flex w-full flex-col flex-wrap content-center gap-5 md:flex-row md:flex-wrap md:justify-start lg:justify-center">
             {/* {routines.data && routines.data.length >= 1 ? (
