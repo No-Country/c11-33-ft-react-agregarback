@@ -64,7 +64,7 @@ model Exercise {
   descripcion      String
   bodyPart         String
   equipment        String
-  gifUrls          String[]          @map(name: "img\\${Int}@count")
+  gifUrls          String[]
   target           String
   useful           Boolean           @default(false)
   routineExercises RoutineExercise[]

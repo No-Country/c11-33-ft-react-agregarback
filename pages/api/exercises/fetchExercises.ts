@@ -25,7 +25,7 @@ export default async function handler(
         data: {
           bodyPart: exercise.bodyPart,
           equipment: exercise.equipment,
-          descripcion: "ss",
+          descripcion: "Process...",
           name: exercise.name,
           target: exercise.target,
         },
