@@ -1,6 +1,7 @@
 import axios from "axios";
 import prisma from "@/lib/prisma";
 import { NextApiResponse, NextApiRequest } from "next";
+import description from "@/lib/exercises/description.json";
 
 //CUIDADO CON HACER GET !!! SOLO EN CASO DE LIMPIAR LA BASE DE DATOS
 export default async function handler(
@@ -24,7 +25,7 @@ export default async function handler(
         data: {
           bodyPart: exercise.bodyPart,
           equipment: exercise.equipment,
-          gifUrl: exercise.gifUrl,
+          descripcion: "ss",
           name: exercise.name,
           target: exercise.target,
         },
