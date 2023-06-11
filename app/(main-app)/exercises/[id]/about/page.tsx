@@ -12,11 +12,7 @@ export default function About({ params }: { params: Params }) {
   console.log("IMAGE:", image);
 
   const instructions: string[] = [
-    "instruccion 1 : Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet lorem Lorem ipsum dolor sit amet",
-    "instruccion 2  : Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet lorem Lorem ipsum dolor sit amet",
-    "instruccion 3  : Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet lorem Lorem ipsum dolor sit amet",
-    "instruccion 4  : Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet lorem Lorem ipsum dolor sit amet",
-    "instruccion 5  : Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet lorem Lorem ipsum dolor sit amet",
+    "Process..."
   ];
 
   return (
@@ -24,17 +20,17 @@ export default function About({ params }: { params: Params }) {
       <div className="py-auto flex w-full content-center justify-center p-4 md:flex md:h-[300px] md:basis-2/5 md:content-center md:justify-center">
         {/* <img className="h-full" src="/logo.png" alt="About exercise" /> */}
         {image ? (
-          <Image
+          <img
             className="py-auto h-full rounded"
-            src={image}
+            src={`/${image}`}
             alt="About exercise"
             width={300}
             height={500}
           />
         ) : (
-          <Image
+          <img
             className="h-full rounded"
-            src=""
+            src={`/${image}`}
             alt="About exercise"
             width={300}
             height={500}
@@ -45,12 +41,13 @@ export default function About({ params }: { params: Params }) {
         <h4 className="px-4 text-xl font-semibold text-accent-600">
           Instructions
         </h4>
-        <ol className="px-4 text-sm">
-          {instructions.map((ins, index) => (
+        <ol className="px-4 text-xl text-white/70">
+          {/* {instructions.map((ins, index) => (
             <li key={index} className="text-neutral-100">
               {index + 1}. {ins}
             </li>
-          ))}
+          ))} */}
+          Process...
         </ol>
       </div>
     </div>

@@ -38,7 +38,7 @@ export default function cardExercise({
         href={`/exercises/[id]/about?image=${image}`}
         as={`/exercises/${id}/about?image=${image}`}
       >
-        <Image
+        <img
           className="aspect-square h-32 w-32 rounded"
           src={image}
           alt={title}

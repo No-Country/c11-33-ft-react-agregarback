@@ -2,6 +2,8 @@ import axios from "axios";
 import prisma from "@/lib/prisma";
 import { NextApiResponse, NextApiRequest } from "next";
 import description from "@/lib/exercises/description.json";
+import {urls} from "@/lib/exercises/urls.js";
+import {Exercises} from "@/app/types/exercisesApi";
 
 //CUIDADO CON HACER GET !!! SOLO EN CASO DE LIMPIAR LA BASE DE DATOS
 export default async function handler(
@@ -18,19 +20,24 @@ export default async function handler(
       "https://exercise-database.p.rapidapi.com/exercises",
       { headers },
     );
-    const exercises = response.data;
+    const exercises: Exercises[] = response.data;
+    const urlss = urls
 
-    for (const exercise of exercises) {
-      await prisma.exercise.create({
-        data: {
-          bodyPart: exercise.bodyPart,
-          equipment: exercise.equipment,
-          descripcion: "Process...",
-          name: exercise.name,
-          target: exercise.target,
-        },
-      });
-    }
+
+for (let i = 0; i < urlss.length; i++) {
+  const exercise = exercises[i];
+  await prisma.exercise.create({
+    data: {
+      bodyPart: exercise.bodyPart,
+      equipment: exercise.equipment,
+      gifUrl: urls[i],
+      descripcion: "Process...",
+      name: exercise.name,
+      target: exercise.target,
+    },
+  });
+}
+
     console.log("Exercises saved to database.");
     res.status(200).json({ message: "Exercises saved to database." });
   } catch (error) {
